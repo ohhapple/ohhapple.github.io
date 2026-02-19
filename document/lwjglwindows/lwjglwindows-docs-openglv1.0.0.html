@@ -23,7 +23,7 @@
         <li><a href="../../about/about.html"><i class="fas fa-users"></i> 关于</a></li>
     </ul>
     <div class="sidebar-footer">
-        <a href="https://github.com/ohhapple/" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/ohhapple" target="_blank"><i class="fab fa-github"></i></a>
     </div>
     <div class="footer-copy">
         Copyright © 2026 ohhapple
@@ -61,7 +61,7 @@
                 <i class="fas fa-image"></i>
             </div>
             <div class="navbar-github">
-                <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </nav>
 
@@ -77,10 +77,12 @@
             <div class="list-section" style="margin-top: 2rem;">
                 <h3>📦 快速开始</h3>
                 <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>建议使用最新版本，可通过tag时间查看，一个tag代表一个版本</li>
+                    <li>建议使用最新版本，可通过tag时间查看，一个tag代表一个版本，tag名称为版本号</li>
                     <li>项目仓库： <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub仓库</a></li>
-                    <li>导入gradle依赖：<code>implementation 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
-                    <li>打包进jar：<code>include 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
+                    <li>本依赖库已发布在jitpack，在gradle配置文件repositories中引入jitpack仓库：<code>maven { url 'https://jitpack.io' }</code></li>
+                    <li>导入gradle依赖，在gradle配置文件dependencies中导入依赖：<code>implementation 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
+                    <li>打包进jar，在gradle配置文件dependencies中导入依赖后加入：<code>include 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
+                    <li>或直接在gradle配置文件dependencies中加入：<code>include(implementation("com.github.ohhapple:LWJGLwindows:版本号"))</code></li>
                 </ul>
                 <h3>✨ 主要特性</h3>
                 <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
@@ -127,12 +129,9 @@
                 </pre>
                 <h3>📝 示例(仅展示部分方法调用，其它方法自行探索)</h3>
                 <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>minecraft客户端实例自行导入，该示例代码基于CarpetPlus项目</li>
+                    <li>Minecraft客户端实例自行导入，该示例代码基于CarpetPlus项目</li>
                 </ul>
                 <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                    # 示例(仅展示部分方法调用，其它方法自行探索)
-minecraft客户端实例自行导入，该示例代码基于CarpetPlus项目
-~~~
 /*
  * This file is part of the CarpetPlus project, licensed under the
  * GNU Lesser General Public License v3.0
@@ -257,7 +256,7 @@ public class ExamplePage {
                     Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
                 </div>
                 <div class="footer-social">
-                    <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </footer>
