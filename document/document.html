@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ohhapple•docs · 文档索引</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h3>导航</h3>
+        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="../index.html"><i class="fas fa-home"></i> 主页</a></li>
+        <li><a href="document.html"><i class="fas fa-file-alt"></i> 文档</a></li>
+        <li><a href="repositories.html"><i class="fas fa-code-branch"></i> 项目仓库</a></li>
+        <li><a href="../about/about.html"><i class="fas fa-users"></i> 关于</a></li>
+    </ul>
+    <div class="sidebar-footer">
+        <a href="https://github.com/ohhapple/" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="footer-copy">
+        Copyright © 2026 ohhapple
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="wrapper">
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>ohhapple<span style="font-weight:300; color:#5d71b0;">•</span>docs</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">主页</a>
+                <a href="document.html">文档</a>
+                <a href="repositories.html">项目仓库</a>
+            </div>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="darkSwitch">
+                    <span class="slider round">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </span>
+                </label>
+            </div>
+            <div class="simple-toggle" id="simpleToggle">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="navbar-github">
+                <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="section-title" style="margin-top:2rem;">
+                <h2>📚 项目文档</h2>
+                <a href="repositories.html">项目仓库 <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="搜索文档..." autocomplete="off">
+                </div>
+            </div>
+
+            <div class="docs-grid" id="docsGrid">
+                <a href="carpetplus-docs.html" style="text-decoration: none;" class="doc-card-link">
+                    <article class="doc-card">
+                        <div class="card-icon"><i class="fas fa-cube"></i></div>
+                        <h3>CarpetPlus</h3>
+                        <p>Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。</p>
+                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">阅读 <i class="fas fa-arrow-right"></i></span></div>
+                    </article>
+                </a>
+                <a href="lwjglwindows-docs.html" style="text-decoration: none;" class="doc-card-link">
+                    <article class="doc-card">
+                        <div class="card-icon"><i class="fas fa-window-maximize"></i></div>
+                        <h3>LWJGLwindows</h3>
+                        <p>LWJGL 窗口封装库，旨在解决Minecraft不同版本间GUI代码差异问题。</p>
+                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">阅读 <i class="fas fa-arrow-right"></i></span></div>
+                    </article>
+                </a>
+            </div>
+
+            <div style="margin: 3rem 0; text-align: center; opacity: 0.7;">
+                <p>选择上面的项目查看详细文档。</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-copy">
+                    Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- 引入公共脚本 -->
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarpetPlus · 版本列表</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h3>导航</h3>
+        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="../index.html"><i class="fas fa-home"></i> 主页</a></li>
+        <li><a href="document.html"><i class="fas fa-file-alt"></i> 文档</a></li>
+        <li><a href="repositories.html"><i class="fas fa-code-branch"></i> 项目仓库</a></li>
+        <li><a href="../about/about.html"><i class="fas fa-users"></i> 关于</a></li>
+    </ul>
+    <div class="sidebar-footer">
+        <a href="https://github.com/ohhapple/" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="footer-copy">
+        Copyright © 2026 ohhapple
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="wrapper">
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>ohhapple<span style="font-weight:300; color:#5d71b0;">•</span>docs</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">主页</a>
+                <a href="document.html">文档</a>
+                <a href="repositories.html">项目仓库</a>
+            </div>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="darkSwitch">
+                    <span class="slider round">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </span>
+                </label>
+            </div>
+            <div class="simple-toggle" id="simpleToggle">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="navbar-github">
+                <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </nav>
+
+        <main>
+            <div style="margin: 2rem 0;">
+                <a href="document.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> 返回文档索引</a>
+            </div>
+            <div class="hero" style="max-width: 800px;">
+                <span class="hero-badge"><i class="fas fa-cube"></i> CarpetPlus 版本列表</span>
+                <h1>CarpetPlus 所有版本</h1>
+                <p>选择对应版本查看详细文档和更新说明。</p>
+            </div>
+
+            <!-- 搜索框 -->
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="搜索版本号..." autocomplete="off">
+                </div>
+            </div>
+
+            <div class="docs-grid" id="docsGrid">
+                <!-- 版本卡片示例，按需增删 -->
+                <a href="carpetplus/carpetplus-docs-1.21.10.html" style="text-decoration: none;" class="doc-card-link">
+                    <article class="doc-card">
+                        <div class="card-icon"><i class="fas fa-tag"></i></div>
+                        <h3>fabric-1.21.10</h3>
+                        <p>发布日期：2026-01-19<br>首个公开发布版本</p>
+                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">查看 <i class="fas fa-arrow-right"></i></span></div>
+                    </article>
+                </a>
+                <!-- 可以继续添加更多版本 -->
+
+            </div>
+
+            <div style="margin: 3rem 0; text-align: center; opacity: 0.7;">
+                <p>共 <span id="versionCount">4</span> 个版本</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-copy">
+                    Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- 引入公共脚本 -->
+<script src="../script.js"></script>
+<!-- 可选：更新版本计数（搜索时动态更新） -->
+<script>
+    (function() {
+        // 更新版本计数
+        function updateVersionCount() {
+            const cards = document.querySelectorAll('.doc-card-link');
+            const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
+            const countSpan = document.getElementById('versionCount');
+            if (countSpan) {
+                countSpan.textContent = visibleCards.length;
+            }
+        }
+
+        // 初始计数
+        updateVersionCount();
+
+        // 监听搜索输入，计数更新
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                // 由于 script.js 中的搜索会设置 display，我们延迟一下等待 DOM 更新
+                setTimeout(updateVersionCount, 10);
+            });
+        }
+    })();
+</script>
+</body>
+</html>
