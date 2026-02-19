@@ -956,7 +956,7 @@ body.dark .simple-toggle.active {
 
 /* ===== 简约模式背景 ===== */
 body.simple-mode {
-    background: url('images/bglight.png') no-repeat center center fixed;
+    background: url('images/bglight.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -968,7 +968,7 @@ body.simple-mode::after {
 
 /* 暗黑模式下如果开启简约模式，仍使用图片背景（图片应适合暗黑） */
 body.dark.simple-mode {
-    background: url('images/bgdark.png') no-repeat center center fixed;
+    background: url('images/bgdark.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 /*--------------------------------------------------------------------*/
