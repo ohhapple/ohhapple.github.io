@@ -4,262 +4,362 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarpetPlus·fabric-1.21.10 docs</title>
+    <link rel="icon" type="image/x-icon" href="../../images/icon/ohhapple.ico">
+    <link rel="manifest" href="../../images/icon/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <h3>导航</h3>
-        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
-    </div>
-    <ul class="sidebar-menu">
-        <li><a href="../../index.html"><i class="fas fa-home"></i> 主页</a></li>
-        <li><a href="../document.html"><i class="fas fa-file-alt"></i> 文档</a></li>
-        <li><a href="../repositories.html"><i class="fas fa-code-branch"></i> 项目仓库</a></li>
-        <li><a href="../../about/about.html"><i class="fas fa-users"></i> 关于</a></li>
-    </ul>
-    <div class="sidebar-footer">
-        <a href="https://github.com/ohhapple" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-    <div class="footer-copy">
-        Copyright © 2026 ohhapple
-    </div>
-</aside>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="../../js/script.js"></script>
+<script>
+    renderCommonLayout('docs', '../../');
 
-<div class="wrapper">
-    <div class="container">
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
+    // 本页独有翻译（包含所有条目及目录）
+    const pageI18n = {
+        zh: {
+            'carpetplus.back': '返回CarpetPlus文档索引',
+            'carpetplus.docTitle': 'CarpetPlus fabric-1.21.10 文档',
+            'carpetplus.docDesc': 'Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。',
+            'carpetplus.quickstart': '📦 快速开始',
+            'carpetplus.quickstart.item1': '下载最新版本从 <a href="https://github.com/ohhapple/CarpetPlus/releases" target="_blank">GitHub Releases</a>',
+            'carpetplus.quickstart.item2': '如遇到问题，请在GitHub提交Issues： <a href="https://github.com/ohhapple/CarpetPlus/issues" target="_blank">GitHub Issues</a>',
+            'carpetplus.quickstart.item3': '放入 Minecraft 的 mods 文件夹（需要 Fabric 加载器）',
+            'carpetplus.quickstart.item4': '输入指令 /carpet 打开菜单 启用/禁用规则',
+            'carpetplus.features': '✨ 主要特性',
+            'carpetplus.feature1': '首个公开发布的版本',
+            'carpetplus.repoLink': '详情请访问 <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub 仓库</a>。',
+            'carpetplus.rulesTitle': '📜 规则列表',
+            'carpetplus.commandsTitle': '📟 指令 [command]',
+            'carpetplus.commandsDesc': '关于玩家独立视距范围的指令：',
+            'carpetplus.commands.item1': '启用功能：/carpet playerSpecificChunks true',
+            'carpetplus.commands.item2': '开启功能后玩家默认视距被设置为10（不会超过服务器视距）',
+            'carpetplus.commands.item3': '设置玩家视距：/playerchunk set',
+            'carpetplus.commands.item4': '查看玩家视距：/playerchunk get',
+            'carpetplus.commands.item5': '列出所有设置：/playerchunk list',
+            'carpetplus.commands.item6': '查看状态：/playerchunk status',
+            'carpetplus.commands.item7': '统计信息：/chunkstats',
+            'carpetplus.exampleTitle': '📝 示例代码',
+            // 规则标题及描述
+            'rule.SuperWindCharge.title': '风弹螺旋丸手里剑 (SuperWindCharge)',
+            'rule.SuperWindCharge.desc': '使玩家投出的风弹伤害、范围、击退属性增大。',
+            'rule.VillageAlwaysBreed.title': '村民一直繁殖 (VillageAlwaysBreed)',
+            'rule.VillageAlwaysBreed.desc': '只要村民（小村民也会繁殖）数量大于二并且周围有多余的空床就会开始繁殖行为。',
+            'rule.SuperSponge.title': '超级海绵模式 (SuperSponge)',
+            'rule.SuperSponge.desc': '选择海绵可以吸收什么流体，开启后还可以自定义吸收范围。',
+            'rule.SuperSpongeRadius.title': '超级海绵生效半径 (SuperSpongeRadius)',
+            'rule.SuperSpongeRadius.desc': '设置超级海绵模式下的生效半径，需要使用/carpet SuperSponge开启超级海绵模式。',
+            'rule.playerSpecificChunks.title': '启用玩家独立视距 (playerSpecificChunks)',
+            'rule.playerSpecificChunks.desc': '可以单独控制服务器玩家的视距。',
+            'rule.concreteBurnedIntoglass.title': '16色混凝土粉末烧成16色玻璃 (concreteBurnedIntoglass)',
+            'rule.concreteBurnedIntoglass.desc': '16色混凝土粉末可以在熔炉内烧成16色玻璃。',
+            'rule.StackablePotion.title': '药水可堆叠 (StackablePotion)',
+            'rule.StackablePotion.desc': '药水可以堆叠。',
+            'rule.StackableEnchantedBook.title': '附魔书可堆叠 (StackableEnchantedBook)',
+            'rule.StackableEnchantedBook.desc': '附魔书可以堆叠。',
+            'rule.StackableTotemOfUndying.title': '不死图腾可堆叠 (StackableTotemOfUndying)',
+            'rule.StackableTotemOfUndying.desc': '不死图腾可以堆叠。',
+            'rule.EquipmentUnbreak.title': '装备不消耗耐久 (EquipmentUnbreak)',
+            'rule.EquipmentUnbreak.desc': '装备不消耗耐久。',
+            'rule.ShulkerBoxNested.title': '潜影盒嵌套 (ShulkerBoxNested)',
+            'rule.ShulkerBoxNested.desc': '潜影盒可以嵌套，包括玩家手动放入和漏斗等放入。',
+            // 规则元信息
+            'rule.type': '类型',
+            'rule.default': '默认值',
+            'rule.options': '可选参数',
+            'rule.enable': '开启方法',
+            // 分类标签
+            'rule.category.ohhapple': 'ohhapple',
+            'rule.category.FEATURE': 'FEATURE',
+            'rule.deprecated': '该规则在后续版本弃用',
+            // 右侧目录条目（保留换行）
+            'rule.toc.title': '📑 目录',
+            'rule.toc.SuperWindCharge': '风弹螺旋丸手里剑<br>(SuperWindCharge)',
+            'rule.toc.VillageAlwaysBreed': '村民一直繁殖<br>(VillageAlwaysBreed)',
+            'rule.toc.SuperSponge': '超级海绵模式<br>(SuperSponge)',
+            'rule.toc.SuperSpongeRadius': '超级海绵生效半径<br>(SuperSpongeRadius)',
+            'rule.toc.playerSpecificChunks': '启用玩家独立视距<br>(playerSpecificChunks)',
+            'rule.toc.concreteBurnedIntoglass': '16色混凝土粉末烧成16色玻璃<br>(concreteBurnedIntoglass)',
+            'rule.toc.StackablePotion': '药水可堆叠<br>(StackablePotion)',
+            'rule.toc.StackableEnchantedBook': '附魔书可堆叠<br>(StackableEnchantedBook)',
+            'rule.toc.StackableTotemOfUndying': '不死图腾可堆叠<br>(StackableTotemOfUndying)',
+            'rule.toc.EquipmentUnbreak': '装备不消耗耐久<br>(EquipmentUnbreak)',
+            'rule.toc.ShulkerBoxNested': '潜影盒嵌套<br>(ShulkerBoxNested)'
+        },
+        en: {
+            'carpetplus.back': 'Back to CarpetPlus Docs Index',
+            'carpetplus.docTitle': 'CarpetPlus fabric-1.21.10 Documentation',
+            'carpetplus.docDesc': 'Minecraft Carpet extension mod, providing more game feature control and optimization.',
+            'carpetplus.quickstart': '📦 Quick Start',
+            'carpetplus.quickstart.item1': 'Download the latest version from <a href="https://github.com/ohhapple/CarpetPlus/releases" target="_blank">GitHub Releases</a>',
+            'carpetplus.quickstart.item2': 'If you encounter problems, please submit issues on GitHub:  <a href="https://github.com/ohhapple/CarpetPlus/issues" target="_blank">GitHub Issues</a>',
+            'carpetplus.quickstart.item3': 'Place it in the Minecraft mods folder (requires Fabric Loader)',
+            'carpetplus.quickstart.item4': 'Use the command /carpet to open the menu and enable/disable rules',
+            'carpetplus.features': '✨ Key Features',
+            'carpetplus.feature1': 'First public release',
+            'carpetplus.repoLink': 'For more details, visit the <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub repository</a>.',
+            'carpetplus.rulesTitle': '📜 Rule List',
+            'carpetplus.commandsTitle': '📟 Commands',
+            'carpetplus.commandsDesc': 'Commands for player-specific chunk loading:',
+            'carpetplus.commands.item1': 'Enable feature: /carpet playerSpecificChunks true',
+            'carpetplus.commands.item2': 'After enabling, the default player view distance is set to 10 (cannot exceed server view distance)',
+            'carpetplus.commands.item3': 'Set player view distance: /playerchunk set',
+            'carpetplus.commands.item4': 'Get player view distance: /playerchunk get',
+            'carpetplus.commands.item5': 'List all settings: /playerchunk list',
+            'carpetplus.commands.item6': 'Check status: /playerchunk status',
+            'carpetplus.commands.item7': 'Statistics: /chunkstats',
+            'carpetplus.exampleTitle': '📝 Example Code',
+            // 规则标题及描述（英文仅显示规则名，不加中文括号）
+            'rule.SuperWindCharge.title': 'SuperWindCharge',
+            'rule.SuperWindCharge.desc': 'Increases damage, range, and knockback of wind charges thrown by players.',
+            'rule.VillageAlwaysBreed.title': 'VillageAlwaysBreed',
+            'rule.VillageAlwaysBreed.desc': 'Villagers (including baby villagers) will start breeding if there are more than two and extra beds are available.',
+            'rule.SuperSponge.title': 'SuperSponge',
+            'rule.SuperSponge.desc': 'Choose which fluids the sponge can absorb; after enabling, you can also customize the absorption range.',
+            'rule.SuperSpongeRadius.title': 'SuperSpongeRadius',
+            'rule.SuperSpongeRadius.desc': 'Set the effective radius for SuperSponge mode. Requires /carpet SuperSponge to be enabled.',
+            'rule.playerSpecificChunks.title': 'playerSpecificChunks',
+            'rule.playerSpecificChunks.desc': 'Allows per-player view distance control on the server.',
+            'rule.concreteBurnedIntoglass.title': 'concreteBurnedIntoglass',
+            'rule.concreteBurnedIntoglass.desc': '16-color concrete powder can be smelted into 16-color glass in a furnace.',
+            'rule.StackablePotion.title': 'StackablePotion',
+            'rule.StackablePotion.desc': 'Potions can be stacked.',
+            'rule.StackableEnchantedBook.title': 'StackableEnchantedBook',
+            'rule.StackableEnchantedBook.desc': 'Enchanted books can be stacked.',
+            'rule.StackableTotemOfUndying.title': 'StackableTotemOfUndying',
+            'rule.StackableTotemOfUndying.desc': 'Totems of Undying can be stacked.',
+            'rule.EquipmentUnbreak.title': 'EquipmentUnbreak',
+            'rule.EquipmentUnbreak.desc': 'Equipment does not consume durability.',
+            'rule.ShulkerBoxNested.title': 'ShulkerBoxNested',
+            'rule.ShulkerBoxNested.desc': 'Shulker boxes can be nested, including manual insertion and by hoppers, etc.',
+            // 规则元信息
+            'rule.type': 'Type',
+            'rule.default': 'Default',
+            'rule.options': 'Options',
+            'rule.enable': 'Enable command',
+            'rule.category.ohhapple': 'ohhapple',
+            'rule.category.FEATURE': 'FEATURE',
+            'rule.deprecated': 'This rule is deprecated in later versions',
+            // 右侧目录条目（英文仅显示规则名，无换行也可，但保留<br>以保证样式统一）
+            'rule.toc.title': '📑 Table of Contents',
+            'rule.toc.SuperWindCharge': 'SuperWindCharge',
+            'rule.toc.VillageAlwaysBreed': 'VillageAlwaysBreed',
+            'rule.toc.SuperSponge': 'SuperSponge',
+            'rule.toc.SuperSpongeRadius': 'SuperSpongeRadius',
+            'rule.toc.playerSpecificChunks': 'playerSpecificChunks',
+            'rule.toc.concreteBurnedIntoglass': 'concreteBurnedIntoglass',
+            'rule.toc.StackablePotion': 'StackablePotion',
+            'rule.toc.StackableEnchantedBook': 'StackableEnchantedBook',
+            'rule.toc.StackableTotemOfUndying': 'StackableTotemOfUndying',
+            'rule.toc.EquipmentUnbreak': 'EquipmentUnbreak',
+            'rule.toc.ShulkerBoxNested': 'ShulkerBoxNested'
+        }
+    };
+
+    Object.assign(window.i18n.zh, pageI18n.zh);
+    Object.assign(window.i18n.en, pageI18n.en);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        content.innerHTML = `
+                <div style="margin: 2rem 0;">
+                    <a href="../carpetplus-docs.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> <span data-i18n="carpetplus.back">返回CarpetPlus文档索引</span></a>
                 </div>
-                <div class="logo">
-                    <i class="fas fa-book-open"></i>
-                    <span>ohhapple<span style="font-weight:300; color:#5d71b0;">•</span>docs</span>
+                <div class="hero" style="max-width: 800px;">
+                    <span class="hero-badge"><i class="fas fa-cube"></i> CarpetPlus</span>
+                    <h1 data-i18n="carpetplus.docTitle">CarpetPlus fabric-1.21.10 文档</h1>
+                    <p data-i18n="carpetplus.docDesc">Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。</p>
                 </div>
-            </div>
-            <div class="nav-links">
-                <a href="../../index.html">主页</a>
-                <a href="../document.html">文档</a>
-                <a href="../repositories.html">项目仓库</a>
-            </div>
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="darkSwitch">
-                    <span class="slider round">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </span>
-                </label>
-            </div>
-            <div class="simple-toggle" id="simpleToggle">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="navbar-github">
-                <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-        </nav>
 
-        <main>
-            <div style="margin: 2rem 0;">
-                <a href="../carpetplus-docs.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> 返回CarpetPlus文档索引</a>
-            </div>
-            <div class="hero" style="max-width: 800px;">
-                <span class="hero-badge"><i class="fas fa-cube"></i> CarpetPlus</span>
-                <h1>CarpetPlus fabric-1.21.10 文档</h1>
-                <p>Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。</p>
-            </div>
+                <div class="list-section" style="margin-top: 2rem;">
+                    <h3 data-i18n="carpetplus.quickstart">📦 快速开始</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="carpetplus.quickstart.item1">下载最新版本从 <a href="https://github.com/ohhapple/CarpetPlus/releases" target="_blank">GitHub Releases</a></li>
+                        <li data-i18n="carpetplus.quickstart.item2">如遇到问题，请在GitHub提交Issues： <a href="https://github.com/ohhapple/CarpetPlus/issues" target="_blank">GitHub Issues</a></li>
+                        <li data-i18n="carpetplus.quickstart.item3">放入 Minecraft 的 mods 文件夹（需要 Fabric 加载器）</li>
+                        <li data-i18n="carpetplus.quickstart.item4">输入指令 <code>/carpet</code> 打开菜单 启用/禁用规则</li>
+                    </ul>
+                    <h3 data-i18n="carpetplus.features">✨ 主要特性</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="carpetplus.feature1">首个公开发布的版本</li>
+                    </ul>
 
-            <div class="list-section" style="margin-top: 2rem;">
-                <h3>📦 快速开始</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>下载最新版本从 <a href="https://github.com/ohhapple/CarpetPlus/releases" target="_blank">GitHub Releases</a></li>
-                    <li>放入 Minecraft 的 mods 文件夹（需要 Fabric 加载器）</li>
-                    <li>输入指令 <code>/carpet</code> 打开菜单 启用/禁用规则</li>
-                </ul>
-                <h3>✨ 主要特性</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>首个公开发布的版本</li>
-                </ul>
+                    <p style="margin-top: 2rem;" data-i18n="carpetplus.repoLink">详情请访问 <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub 仓库</a>。</p>
+                </div>
 
-                <p style="margin-top: 2rem;">详情请访问 <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub 仓库</a>。</p>
-            </div>
+                <div class="list-section" style="margin-top: 2rem; padding: 2rem;">
+                    <div class="rule-layout">
+                        <div class="rule-content">
+                            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;" data-i18n="carpetplus.rulesTitle">📜 规则列表</h3>
 
-            <div class="list-section" style="margin-top: 2rem; padding: 2rem;">
-                <div class="rule-layout">
-                    <!-- 左侧规则内容 -->
-                    <div class="rule-content">
-                        <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">📜 规则列表</h3>
-
-                        <!-- 规则条目 -->
-                        <div id="rule-SuperWindCharge" class="rule-item">
-                            <h4>风弹螺旋丸手里剑 (SuperWindCharge)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
+                            <!-- 规则条目 - 全部添加 data-i18n 键 -->
+                            <div id="rule-SuperWindCharge" class="rule-item">
+                                <h4 data-i18n="rule.SuperWindCharge.title">风弹螺旋丸手里剑 (SuperWindCharge)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.SuperWindCharge.desc">使玩家投出的风弹伤害、范围、击退属性增大。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true, false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet SuperWindCharge true</code></p>
                             </div>
-                            <p>使玩家投出的风弹伤害、范围、击退属性增大。</p>
-                            <p><strong>类型:</strong> <code>boolean</code> | <strong>默认值:</strong> <code>false</code> | <strong>可选参数:</strong> <code>true, false</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet SuperWindCharge true</code></p>
+
+                            <div id="rule-VillageAlwaysBreed" class="rule-item">
+                                <h4 data-i18n="rule.VillageAlwaysBreed.title">村民一直繁殖 (VillageAlwaysBreed)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.VillageAlwaysBreed.desc">只要村民（小村民也会繁殖）数量大于二并且周围有多余的空床就会开始繁殖行为。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true, false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet VillageAlwaysBreed true</code></p>
+                            </div>
+
+                            <div id="rule-SuperSponge" class="rule-item">
+                                <h4 data-i18n="rule.SuperSponge.title">超级海绵模式 (SuperSponge)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.SuperSponge.desc">选择海绵可以吸收什么流体，开启后还可以自定义吸收范围。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>String</code> | <span data-i18n="rule.default">默认值</span>: <code>"false"</code> | <span data-i18n="rule.options">可选参数</span>: <code>"false","water","lava","both"</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet SuperSponge both</code></p>
+                            </div>
+
+                            <div id="rule-SuperSpongeRadius" class="rule-item">
+                                <h4 data-i18n="rule.SuperSpongeRadius.title">超级海绵生效半径 (SuperSpongeRadius)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.SuperSpongeRadius.desc">设置超级海绵模式下的生效半径，需要使用/carpet SuperSponge开启超级海绵模式。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>int</code> | <span data-i18n="rule.default">默认值</span>: <code>6</code> | <span data-i18n="rule.options">可选参数</span>: <code>0,6,10,20,100</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet SuperSpongeRadius 100</code></p>
+                            </div>
+
+                            <div id="rule-playerSpecificChunks" class="rule-item">
+                                <h4 data-i18n="rule.playerSpecificChunks.title">启用玩家独立视距 (playerSpecificChunks)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                    <span data-i18n="rule.deprecated">该规则在后续版本弃用</span>
+                                </div>
+                                <p data-i18n="rule.playerSpecificChunks.desc">可以单独控制服务器玩家的视距。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true, false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet playerSpecificChunks true</code></p>
+                            </div>
+
+                            <div id="rule-concreteBurnedIntoglass" class="rule-item">
+                                <h4 data-i18n="rule.concreteBurnedIntoglass.title">16色混凝土粉末烧成16色玻璃 (concreteBurnedIntoglass)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.concreteBurnedIntoglass.desc">16色混凝土粉末可以在熔炉内烧成16色玻璃。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true, false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet concreteBurnedIntoglass true</code></p>
+                            </div>
+
+                            <div id="rule-StackablePotion" class="rule-item">
+                                <h4 data-i18n="rule.StackablePotion.title">药水可堆叠 (StackablePotion)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.StackablePotion.desc">药水可以堆叠。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>int</code> | <span data-i18n="rule.default">默认值</span>: <code>1</code> | <span data-i18n="rule.options">可选参数</span>: <code>1,16,64</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet StackablePotion 64</code></p>
+                            </div>
+
+                            <div id="rule-StackableEnchantedBook" class="rule-item">
+                                <h4 data-i18n="rule.StackableEnchantedBook.title">附魔书可堆叠 (StackableEnchantedBook)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.StackableEnchantedBook.desc">附魔书可以堆叠。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>int</code> | <span data-i18n="rule.default">默认值</span>: <code>1</code> | <span data-i18n="rule.options">可选参数</span>: <code>1,16,64</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet StackableEnchantedBook 64</code></p>
+                            </div>
+
+                            <div id="rule-StackableTotemOfUndying" class="rule-item">
+                                <h4 data-i18n="rule.StackableTotemOfUndying.title">不死图腾可堆叠 (StackableTotemOfUndying)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.StackableTotemOfUndying.desc">不死图腾可以堆叠。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>int</code> | <span data-i18n="rule.default">默认值</span>: <code>1</code> | <span data-i18n="rule.options">可选参数</span>: <code>1,16,64</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet StackableTotemOfUndying 64</code></p>
+                            </div>
+
+                            <div id="rule-EquipmentUnbreak" class="rule-item">
+                                <h4 data-i18n="rule.EquipmentUnbreak.title">装备不消耗耐久 (EquipmentUnbreak)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.EquipmentUnbreak.desc">装备不消耗耐久。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true,false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet EquipmentUnbreak true</code></p>
+                            </div>
+
+                            <div id="rule-ShulkerBoxNested" class="rule-item">
+                                <h4 data-i18n="rule.ShulkerBoxNested.title">潜影盒嵌套 (ShulkerBoxNested)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.ShulkerBoxNested.desc">潜影盒可以嵌套，包括玩家手动放入和漏斗等放入。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true,false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet ShulkerBoxNested true</code></p>
+                            </div>
                         </div>
 
-                        <div id="rule-VillageAlwaysBreed" class="rule-item">
-                            <h4>村民一直繁殖 (VillageAlwaysBreed)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
+                        <!-- 右侧目录（链接添加 data-i18n 键） -->
+                        <div class="rule-toc">
+                            <h4 data-i18n="rule.toc.title">📑 目录</h4>
+                            <div class="toc-search">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="tocSearch" placeholder="..." aria-label="搜索规则">
                             </div>
-                            <p>只要村民（小村民也会繁殖）数量大于二并且周围有多余的空床就会开始繁殖行为。</p>
-                            <p><strong>类型:</strong> <code>boolean</code> | <strong>默认值:</strong> <code>false</code> | <strong>可选参数:</strong> <code>true, false</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet VillageAlwaysBreed true</code></p>
-                        </div>
-
-                        <div id="rule-SuperSponge" class="rule-item">
-                            <h4>超级海绵模式 (SuperSponge)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>选择海绵可以吸收什么流体，开启后还可以自定义吸收范围。</p>
-                            <p><strong>类型:</strong> <code>String</code> | <strong>默认值:</strong> <code>"false"</code> | <strong>可选参数:</strong> <code>"false","water","lava","both"</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet SuperSponge both</code></p>
-                        </div>
-
-                        <div id="rule-SuperSpongeRadius" class="rule-item">
-                            <h4>超级海绵生效半径 (SuperSpongeRadius)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>设置超级海绵模式下的生效半径，需要使用/carpet SuperSponge开启超级海绵模式。</p>
-                            <p><strong>类型:</strong> <code>int</code> | <strong>默认值:</strong> <code>6</code> | <strong>可选参数:</strong> <code>0,6,10,20,100</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet SuperSpongeRadius 100</code></p>
-                        </div>
-
-                        <div id="rule-playerSpecificChunks" class="rule-item">
-                            <h4>启用玩家独立视距 (playerSpecificChunks)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                                <span>该规则在后续版本弃用</span>
-                            </div>
-                            <p>可以单独控制服务器玩家的视距。</p>
-                            <p><strong>类型:</strong> <code>boolean</code> | <strong>默认值:</strong> <code>false</code> | <strong>可选参数:</strong> <code>true, false</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet playerSpecificChunks true</code></p>
-                        </div>
-
-                        <div id="rule-concreteBurnedIntoglass" class="rule-item">
-                            <h4>16色混凝土粉末烧成16色玻璃 (concreteBurnedIntoglass)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>16色混凝土粉末可以在熔炉内烧成16色玻璃。</p>
-                            <p><strong>类型:</strong> <code>boolean</code> | <strong>默认值:</strong> <code>false</code> | <strong>可选参数:</strong> <code>true, false</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet concreteBurnedIntoglass true</code></p>
-                        </div>
-
-                        <div id="rule-StackablePotion" class="rule-item">
-                            <h4>药水可堆叠 (StackablePotion)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>药水可以堆叠。</p>
-                            <p><strong>类型:</strong> <code>int</code> | <strong>默认值:</strong> <code>1</code> | <strong>可选参数:</strong> <code>1,16,64</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet StackablePotion 64</code></p>
-                        </div>
-
-                        <div id="rule-StackableEnchantedBook" class="rule-item">
-                            <h4>附魔书可堆叠 (StackableEnchantedBook)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>附魔书可以堆叠。</p>
-                            <p><strong>类型:</strong> <code>int</code> | <strong>默认值:</strong> <code>1</code> | <strong>可选参数:</strong> <code>1,16,64</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet StackableEnchantedBook 64</code></p>
-                        </div>
-
-                        <div id="rule-StackableTotemOfUndying" class="rule-item">
-                            <h4>不死图腾可堆叠 (StackableTotemOfUndying)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>不死图腾可以堆叠。</p>
-                            <p><strong>类型:</strong> <code>int</code> | <strong>默认值:</strong> <code>1</code> | <strong>可选参数:</strong> <code>1,16,64</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet StackableTotemOfUndying 64</code></p>
-                        </div>
-
-                        <div id="rule-EquipmentUnbreak" class="rule-item">
-                            <h4>装备不消耗耐久 (EquipmentUnbreak)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>装备不消耗耐久。</p>
-                            <p><strong>类型:</strong> <code>boolean</code> | <strong>默认值:</strong> <code>false</code> | <strong>可选参数:</strong> <code>true,false</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet EquipmentUnbreak true</code></p>
-                        </div>
-
-                        <div id="rule-ShulkerBoxNested" class="rule-item">
-                            <h4>潜影盒嵌套 (ShulkerBoxNested)</h4>
-                            <div class="rule-meta">
-                                <span class="rule-category">ohhapple</span>
-                                <span class="rule-category">FEATURE</span>
-                            </div>
-                            <p>潜影盒可以嵌套，包括玩家手动放入和漏斗等放入。</p>
-                            <p><strong>类型:</strong> <code>boolean</code> | <strong>默认值:</strong> <code>false</code> | <strong>可选参数:</strong> <code>true,false</code></p>
-                            <p><strong>开启方法:</strong> <code>/carpet ShulkerBoxNested true</code></p>
+                            <ul>
+                                <li><a href="#rule-SuperWindCharge" data-i18n="rule.toc.SuperWindCharge">风弹螺旋丸手里剑<br>(SuperWindCharge)</a></li>
+                                <li><a href="#rule-VillageAlwaysBreed" data-i18n="rule.toc.VillageAlwaysBreed">村民一直繁殖<br>(VillageAlwaysBreed)</a></li>
+                                <li><a href="#rule-SuperSponge" data-i18n="rule.toc.SuperSponge">超级海绵模式<br>(SuperSponge)</a></li>
+                                <li><a href="#rule-SuperSpongeRadius" data-i18n="rule.toc.SuperSpongeRadius">超级海绵生效半径<br>(SuperSpongeRadius)</a></li>
+                                <li><a href="#rule-playerSpecificChunks" data-i18n="rule.toc.playerSpecificChunks">启用玩家独立视距<br>(playerSpecificChunks)</a></li>
+                                <li><a href="#rule-concreteBurnedIntoglass" data-i18n="rule.toc.concreteBurnedIntoglass">16色混凝土粉末烧成16色玻璃<br>(concreteBurnedIntoglass)</a></li>
+                                <li><a href="#rule-StackablePotion" data-i18n="rule.toc.StackablePotion">药水可堆叠<br>(StackablePotion)</a></li>
+                                <li><a href="#rule-StackableEnchantedBook" data-i18n="rule.toc.StackableEnchantedBook">附魔书可堆叠<br>(StackableEnchantedBook)</a></li>
+                                <li><a href="#rule-StackableTotemOfUndying" data-i18n="rule.toc.StackableTotemOfUndying">不死图腾可堆叠<br>(StackableTotemOfUndying)</a></li>
+                                <li><a href="#rule-EquipmentUnbreak" data-i18n="rule.toc.EquipmentUnbreak">装备不消耗耐久<br>(EquipmentUnbreak)</a></li>
+                                <li><a href="#rule-ShulkerBoxNested" data-i18n="rule.toc.ShulkerBoxNested">潜影盒嵌套<br>(ShulkerBoxNested)</a></li>
+                            </ul>
                         </div>
                     </div>
-
-                    <!-- 右侧目录 -->
-                    <div class="rule-toc">
-                        <h4>📑 目录</h4>
-                        <div class="toc-search">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="tocSearch" placeholder="搜索规则..." aria-label="搜索规则">
-                        </div>
-                        <ul>
-                            <li><a href="#rule-SuperWindCharge">风弹螺旋丸手里剑<br>(SuperWindCharge)</a></li>
-                            <li><a href="#rule-VillageAlwaysBreed">村民一直繁殖<br>(VillageAlwaysBreed)</a></li>
-                            <li><a href="#rule-SuperSponge">超级海绵模式<br>(SuperSponge)</a></li>
-                            <li><a href="#rule-SuperSpongeRadius">超级海绵生效半径<br>(SuperSpongeRadius)</a></li>
-                            <li><a href="#rule-playerSpecificChunks">启用玩家独立视距<br>(playerSpecificChunks)</a></li>
-                            <li><a href="#rule-concreteBurnedIntoglass">16色混凝土粉末烧成16色玻璃<br>(concreteBurnedIntoglass)</a></li>
-                            <li><a href="#rule-StackablePotion">药水可堆叠<br>(StackablePotion)</a></li>
-                            <li><a href="#rule-StackableEnchantedBook">附魔书可堆叠<br>(StackableEnchantedBook)</a></li>
-                            <li><a href="#rule-StackableTotemOfUndying">不死图腾可堆叠<br>(StackableTotemOfUndying)</a></li>
-                            <li><a href="#rule-EquipmentUnbreak">装备不消耗耐久<br>(EquipmentUnbreak)</a></li>
-                            <li><a href="#rule-ShulkerBoxNested">潜影盒嵌套<br>(ShulkerBoxNested)</a></li>
-                        </ul>
-                    </div>
                 </div>
-            </div>
 
-            <!-- 指令部分 -->
-            <div class="list-section" style="margin-top: 2rem;">
-                <h3>📟指令[command]</h3>
-                <h3>关于玩家独立视距范围的指令：</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>启用功能：<code>/carpet playerSpecificChunks true</code></li>
-                    <li>开启功能后玩家默认视距被设置为10（不会超过服务器视距）</li>
-                    <li>设置玩家视距：<code>/playerchunk set</code></li>
-                    <li>查看玩家视距：<code>/playerchunk get</code></li>
-                    <li>列出所有设置：<code>/playerchunk list</code></li>
-                    <li>查看状态：<code>/playerchunk status</code></li>
-                    <li>统计信息：<code>/chunkstats</code></li>
-                </ul>
+                <!-- 指令部分 -->
+                <div class="list-section" style="margin-top: 2rem;">
+                    <h3 data-i18n="carpetplus.commandsTitle">📟 指令 [command]</h3>
+                    <h3 data-i18n="carpetplus.commandsDesc">关于玩家独立视距范围的指令：</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="carpetplus.commands.item1">启用功能：<code>/carpet playerSpecificChunks true</code></li>
+                        <li data-i18n="carpetplus.commands.item2">开启功能后玩家默认视距被设置为10（不会超过服务器视距）</li>
+                        <li data-i18n="carpetplus.commands.item3">设置玩家视距：<code>/playerchunk set</code></li>
+                        <li data-i18n="carpetplus.commands.item4">查看玩家视距：<code>/playerchunk get</code></li>
+                        <li data-i18n="carpetplus.commands.item5">列出所有设置：<code>/playerchunk list</code></li>
+                        <li data-i18n="carpetplus.commands.item6">查看状态：<code>/playerchunk status</code></li>
+                        <li data-i18n="carpetplus.commands.item7">统计信息：<code>/chunkstats</code></li>
+                    </ul>
 
-                <h3>📝 示例代码</h3>
-                <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <h3 data-i18n="carpetplus.exampleTitle">📝 示例代码</h3>
+                    <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
     启用功能
     /carpet playerSpecificChunks true
     开启功能后玩家默认视距被设置为10（不会超过服务器视距）
@@ -278,27 +378,20 @@
     /playerchunk status
     统计信息
     /chunkstats
-                </pre>
-            </div>
-            <h3 style="margin-top: 3rem; margin-left: 2rem;"> </h3>
-            <p style="margin-left: 2rem; opacity: 0.7;"> </p>
-        </main>
-    </div>
-
-    <div class="container">
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-copy">
-                    Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
+                    </pre>
                 </div>
-                <div class="footer-social">
-                    <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
+                <h3 style="margin-top: 3rem; margin-left: 2rem;"> </h3>
+                <p style="margin-left: 2rem; opacity: 0.7;"> </p>
+            `;
 
-<script src="../../script.js"></script>
+        // 应用当前语言翻译
+        window.applyLanguage(localStorage.getItem('siteLanguage') || 'zh');
+
+        // 手动初始化 CarpetPlus 特有功能（确保目录高亮和搜索可用）
+        if (typeof window.initCarpetPlusFeatures === 'function') {
+            window.initCarpetPlusFeatures();
+        }
+    });
+</script>
 </body>
 </html>

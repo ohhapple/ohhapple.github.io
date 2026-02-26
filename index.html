@@ -1,165 +1,351 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ohhapple•docs · 主页</title>
-    <!-- 引入 Inter 字体 & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- 引入公共样式 -->
-    <link rel="stylesheet" href="style.css">
+    <title>ohhapple • docs</title>
+    <link rel="icon" type="image/x-icon" href="images/icon/ohhapple.ico">
+    <link rel="manifest" href="images/icon/site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a1c2c;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            overflow: hidden;
+            cursor: url('images/mouse/normal.cur') 4 4, auto;
+            input, textarea, [contenteditable="true"] {
+                cursor: url('images/mouse/handwriting.cur') 4 8, text;
+            }
+            a, button, [role="button"] {
+                cursor: url('images/mouse/normal.cur') 8 4, pointer;
+            }
+        }
+
+        /* ----- 禁止用户选中任何内容（保持沉浸感）----- */
+        html, body {
+            -webkit-user-select: none;  /* Chrome, Safari, Opera */
+            -moz-user-select: none;     /* Firefox */
+            -ms-user-select: none;      /* Internet Explorer/Edge */
+            user-select: none;           /* 非前缀版本，标准语法 */
+        }
+
+        .parallax-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #0a1c2c;
+        }
+
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+            backdrop-filter: blur(0px);   /* 强制独立合成层，确保永不合并 */
+            pointer-events: none;
+        }
+
+        .layer-video {
+            object-fit: cover;
+            width: 110% !important;
+            height: 110% !important;
+            left: -5% !important;
+            top: -5% !important;
+            pointer-events: none;
+        }
+
+        .main-title {
+            text-shadow: 0 0 30px #7fd9ff, 0 0 60px #3f7e9a;
+            font-size: clamp(4rem, 14vw, 9rem);
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.2;
+            filter: drop-shadow(0 8px 12px black);
+            background: linear-gradient(135deg, #ffffff, #b0e0ff, #80c0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+        }
+        .sub-title {
+            color: #dff5ff;
+            font-size: 1.6rem;
+            letter-spacing: 0.5em;
+            margin-top: 1.5rem;
+            text-shadow: 0 4px 15px #0099cc;
+            background: transparent;
+            padding: 0.6rem 2.5rem;
+            font-weight: 300;
+            display: inline-block;
+        }
+
+        /* ----- 音乐控制按钮样式 ----- */
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(10, 30, 50, 0.75);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            /* 重置按钮默认样式 (针对 button 元素) */
+
+            outline: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .music-control:hover {
+            background: rgba(20, 60, 90, 0.9);
+            border-color: #7fd9ff;
+            transform: scale(1.1);
+            box-shadow: 0 0 25px #7fd9ff;
+        }
+
+        .music-control:active {
+            transform: scale(0.95);
+        }
+    </style>
 </head>
 <body>
-<!-- 侧边栏 (只保留 GitHub) -->
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <h3>导航</h3>
-        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
-    </div>
-    <ul class="sidebar-menu">
-        <li><a href="index.html"><i class="fas fa-home"></i> 主页</a></li>
-        <li><a href="document/document.html"><i class="fas fa-file-alt"></i> 文档</a></li>
-        <li><a href="document/repositories.html"><i class="fas fa-code-branch"></i> 项目仓库</a></li>
-        <li><a href="about/about.html"><i class="fas fa-users"></i> 关于</a></li>
-    </ul>
-    <div class="sidebar-footer">
-        <a href="https://github.com/ohhapple/" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-    <div class="footer-copy">
-        Copyright © 2026 ohhapple
-    </div>
-</aside>
-<!-- 侧边栏遮罩 -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="parallax-container" id="parallaxContainer">
+    <video class="layer layer-video" id="layerVideo" data-speed="0.06" muted loop playsinline preload="auto">
+        <source src="images/video/bg3.mp4" type="video/mp4">
+        您的浏览器不支持 video 标签。
+    </video>
 
-<div class="wrapper">
-    <div class="container">
-        <!-- 导航栏 -->
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="logo">
-                    <i class="fas fa-book-open"></i>
-                    <span>ohhapple<span style="font-weight:300; color:#5d71b0;">•</span>docs</span>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="#">主页</a>
-                <a href="document/document.html">文档</a>
-                <a href="document/repositories.html">项目仓库</a>
-            </div>
-            <!-- 暗黑模式滑动开关 -->
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="darkSwitch">
-                    <span class="slider round">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </span>
-                </label>
-            </div>
-
-            <div class="simple-toggle" id="simpleToggle">
-                <i class="fas fa-image"></i>
-            </div>
-
-            <div class="navbar-github">
-                <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-        </nav>
-
-        <main>
-            <section class="hero">
-                <span class="hero-badge"><i class="far fa-compass" style="margin-right:0.4rem;"></i>文档主页・ohhapple Document Home</span>
-                <h1>文档导航主页<br>Doc Navigation Home</h1>
-                <p>推荐使用电脑端访问，手机端页面兼容效果不佳<br>欢迎访问我的文档导航 - 这里存放我的笔记与文档，轻松直达<br>Welcome to my document navigation - here you can find my notes and documents, easily accessible.</p>
-                <div class="hero-cta">
-                    <a href="document/document.html" class="btn btn-primary"><i class="fas fa-arrow-right"></i> 浏览全部文档</a>
-                    <a href="document/repositories.html" class="btn btn-outline"><i class="far fa-compass"></i> 查看项目仓库</a>
-                </div>
-            </section>
-
-            <div class="section-title">
-                <h2>📘 热门文档</h2>
-                <a href="document/document.html">查看全部 <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i></a>
-            </div>
-
-            <div class="docs-grid" id="docsGrid">
-                <a href="document/carpetplus-docs.html" style="text-decoration: none;" class="doc-card-link">
-                    <article class="doc-card">
-                        <div class="card-icon"><i class="fas fa-cube"></i></div>
-                        <h3>CarpetPlus</h3>
-                        <p>Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。</p>
-                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">阅读 <i class="fas fa-arrow-right"></i></span></div>
-                    </article>
-                </a>
-                <a href="document/lwjglwindows-docs.html" style="text-decoration: none;" class="doc-card-link">
-                    <article class="doc-card">
-                        <div class="card-icon"><i class="fas fa-window-maximize"></i></div>
-                        <h3>LWJGLwindows</h3>
-                        <p>LWJGL 窗口封装库，旨在解决Minecraft不同版本间GUI代码差异问题。</p>
-                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">阅读 <i class="fas fa-arrow-right"></i></span></div>
-                    </article>
+    <div class="layer layer-mid2" id="layerMid2" data-speed="0.08">
+        <div style="text-align: center; padding-top: 5vh;">
+            <!-- 银凇止境 添加可点击链接，pointer-events:auto 穿透父级限制，在新标签页打开加上（target="_blank"） -->
+            <div class="main-title">
+                <a href="document/document.html"
+                   style="text-decoration: none; color: inherit; pointer-events: auto; display: inline-block;">
+                    银凇止境
                 </a>
             </div>
-
-            <div class="list-section">
-                <div class="list-header">
-                    <i class="fas fa-pen-fancy"></i>
-                    <h3>最近更新</h3>
-                </div>
-                <div class="resource-item">
-                    <i class="far fa-file-lines"></i>
-                    <div class="resource-info">
-                        <span class="title">LWJGLwindows</span>
-                        <span class="desc">—— openglv1.0.1版本发布</span>
-                    </div>
-                    <span class="update-badge">Feb 21 2026</span>
-                </div>
-                <div class="resource-item">
-                    <i class="far fa-file-lines"></i>
-                    <div class="resource-info">
-                        <span class="title">LWJGLwindows</span>
-                        <span class="desc">—— openglv1.0.0版本发布</span>
-                    </div>
-                    <span class="update-badge">Feb 19 2026</span>
-                </div>
-                <div class="resource-item">
-                    <i class="far fa-file-lines"></i>
-                    <div class="resource-info">
-                        <span class="title">CarpetPlus</span>
-                        <span class="desc">—— fabric-1.21.10版本发布</span>
-                    </div>
-                    <span class="update-badge">Jan 19 2026</span>
-                </div>
-                <div style="margin-top:1.5rem; text-align:right;">
-                    <a href="about/changelog.html" style="color:#4c6ef5; text-decoration:none; font-weight:500;">浏览更新日志 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- 页脚 -->
-    <div class="container">
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-copy">
-                    Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
-                </div>
-                <div class="footer-social">
-                    <a href="https://github.com/ohhapple/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </footer>
+            <div class="sub-title">Document Entry</div>
+        </div>
     </div>
 </div>
 
-<!-- 引入公共脚本 -->
-<script src="script.js"></script>
+<!-- ===== 背景音乐 (默认静音, 由按钮控制) ===== -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="images/audio/bgwm.mp3" type="audio/mpeg">
+    <!-- 请将你的音乐文件放在 images/audio/bg-music.mp3，或修改路径为实际位置。支持 MP3 格式。 -->
+    您的浏览器不支持 audio 元素。
+</audio>
+
+<!-- 音乐控制按钮 (圆形, 悬浮) -->
+<button class="music-control" id="musicControl" aria-label="音乐播放控制">🔇</button>
+
+<!-- 视差脚本 -->
+<script>
+    (function() {
+        const container = document.getElementById('parallaxContainer');
+        const layers = document.querySelectorAll('.layer');
+        if (!container || layers.length === 0) return;
+
+        const layerStates = [];
+        layers.forEach(layer => {
+            layerStates.push({
+                element: layer,
+                currentX: 0,
+                currentY: 0,
+                targetX: 0,
+                targetY: 0,
+                speed: parseFloat(layer.getAttribute('data-speed')) || 0.1
+            });
+        });
+
+        let centerX = window.innerWidth / 2;
+        let centerY = window.innerHeight / 2;
+        const maxOffset = 800;
+        const lerpFactor = 0.03;
+
+        function updateCenter() {
+            centerX = window.innerWidth / 2;
+            centerY = window.innerHeight / 2;
+        }
+        window.addEventListener('resize', updateCenter);
+
+        function handleMouseMove(event) {
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            let offsetX = (mouseX - centerX) / centerX;
+            let offsetY = (mouseY - centerY) / centerY;
+
+            offsetX = Math.min(1, Math.max(-1, offsetX));
+            offsetY = Math.min(1, Math.max(-1, offsetY));
+
+            layerStates.forEach(state => {
+                state.targetX = -offsetX * state.speed * maxOffset;
+                state.targetY = -offsetY * state.speed * maxOffset;
+            });
+        }
+
+        function handleMouseLeave() {
+            layerStates.forEach(state => {
+                state.targetX = 0;
+                state.targetY = 0;
+            });
+        }
+
+        function animateLayers() {
+            layerStates.forEach(state => {
+                const newX = state.currentX + (state.targetX - state.currentX) * lerpFactor;
+                const newY = state.currentY + (state.targetY - state.currentY) * lerpFactor;
+
+                state.currentX = newX;
+                state.currentY = newY;
+
+                state.element.style.transform = `translate(${newX.toFixed(1)}px, ${newY.toFixed(1)}px)`;
+            });
+
+            requestAnimationFrame(animateLayers);
+        }
+
+        container.addEventListener('mousemove', handleMouseMove);
+        container.addEventListener('mouseleave', handleMouseLeave);
+
+        animateLayers();
+    })();
+</script>
+
+<!-- 鼠标控制视频播放/暂停 -->
+<script>
+    (function() {
+        const video = document.getElementById('layerVideo');
+        if (!video) return;
+
+        video.pause();
+
+        const container = document.getElementById('parallaxContainer');
+        if (!container) return;
+
+        let idleTimer = null;
+        const idleDelay = 300;
+
+        function playVideo() {
+            if (video.paused) {
+                video.play().catch(err => console.log('视频播放需用户交互:', err));
+            }
+        }
+
+        function pauseVideo() {
+            if (!video.paused) {
+                video.pause();
+            }
+        }
+
+        function onMouseMove() {
+            if (idleTimer) {
+                clearTimeout(idleTimer);
+                idleTimer = null;
+            }
+            playVideo();
+            idleTimer = setTimeout(pauseVideo, idleDelay);
+        }
+
+        function onMouseLeave() {
+            if (idleTimer) {
+                clearTimeout(idleTimer);
+                idleTimer = null;
+            }
+            pauseVideo();
+        }
+
+        container.addEventListener('mousemove', onMouseMove);
+        container.addEventListener('mouseleave', onMouseLeave);
+    })();
+</script>
+
+<!-- 音乐播放控制独立逻辑 -->
+<script>
+    (function() {
+        const audio = document.getElementById('bgMusic');
+        const controlBtn = document.getElementById('musicControl');
+
+        if (!audio || !controlBtn) return;
+
+        // 初始状态为暂停 (🔇)
+        // 注意: 部分浏览器可能阻止自动播放，我们保持初始图标为暂停
+        controlBtn.textContent = '🔇';
+
+        // 点击切换播放/暂停
+        controlBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                // 尝试播放，并处理可能的错误（比如文件不存在）
+                audio.play()
+                    .then(() => {
+                        controlBtn.textContent = '🔊';  // 播放中图标
+                    })
+                    .catch(err => {
+                        console.warn('音频播放失败，请检查音乐文件路径或格式：', err);
+                        // 播放失败时图标保持静音，但用户可再次尝试
+                        controlBtn.textContent = '🔇';
+                    });
+            } else {
+                audio.pause();
+                controlBtn.textContent = '🔇';  // 暂停图标
+            }
+        });
+
+        // 监听音频被其他方式暂停/播放（例如代码调用或音频自然结束——loop下不会结束）
+        audio.addEventListener('pause', function() {
+            controlBtn.textContent = '🔇';
+        });
+        audio.addEventListener('play', function() {
+            controlBtn.textContent = '🔊';
+        });
+
+        // 如果音频加载失败，至少让按钮可点击尝试
+        audio.addEventListener('error', function() {
+            console.error('音频加载失败，请检查网络或文件路径');
+            // 不改变图标，用户点击时会触发play()并catch到错误
+        });
+    })();
+</script>
+
+<!-- 阻止 Ctrl+A / Cmd+A 全选 -->
+<script>
+    (function() {
+        document.addEventListener('keydown', function(e) {
+            // 检测 Ctrl+A 或 Cmd+A (Mac)
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    })();
+</script>
+
+<!-- 关键优化：为所有 .layer 添加 backdrop-filter: blur(0px); 强制合成层，即使没有信息块也流畅 -->
+<!-- 修改说明：将“银凇止境”文字包裹在可点击链接内，pointer-events:auto 确保点击有效，链接默认新窗口打开，样式完全继承原文字外观 -->
+<!-- 新增：右下角音乐控制按钮，支持播放/暂停背景音乐，按钮状态随音乐变化 -->
+<!-- 新增：全局禁止文本选中（user-select: none） + 拦截 Ctrl+A，保护沉浸式体验 -->
 </body>
 </html>

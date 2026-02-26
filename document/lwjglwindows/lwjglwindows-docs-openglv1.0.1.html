@@ -4,109 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LWJGLwindows · 文档</title>
+    <link rel="icon" type="image/x-icon" href="../../images/icon/ohhapple.ico">
+    <link rel="manifest" href="../../images/icon/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <h3>导航</h3>
-        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
-    </div>
-    <ul class="sidebar-menu">
-        <li><a href="../../index.html"><i class="fas fa-home"></i> 主页</a></li>
-        <li><a href="../document.html"><i class="fas fa-file-alt"></i> 文档</a></li>
-        <li><a href="../repositories.html"><i class="fas fa-code-branch"></i> 项目仓库</a></li>
-        <li><a href="../../about/about.html"><i class="fas fa-users"></i> 关于</a></li>
-    </ul>
-    <div class="sidebar-footer">
-        <a href="https://github.com/ohhapple" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-    <div class="footer-copy">
-        Copyright © 2026 ohhapple
-    </div>
-</aside>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="../../js/script.js"></script>
+<script>
+    renderCommonLayout('docs', '../../');
 
-<div class="wrapper">
-    <div class="container">
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="logo">
-                    <i class="fas fa-book-open"></i>
-                    <span>ohhapple<span style="font-weight:300; color:#5d71b0;">•</span>docs</span>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="../../index.html">主页</a>
-                <a href="../document.html">文档</a>
-                <a href="../repositories.html">项目仓库</a>
-            </div>
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="darkSwitch">
-                    <span class="slider round">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </span>
-                </label>
-            </div>
-            <div class="simple-toggle" id="simpleToggle">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="navbar-github">
-                <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-        </nav>
+    // 本页独有翻译 (v1.0.1)
+    const pageI18n = {
+        zh: {
+            'lwjgl101.back': '返回LWJGLwindows文档索引',
+            'lwjgl101.docTitle': 'LWJGLwindows openglv1.0.1 文档',
+            'lwjgl101.docDesc': '这是一个用于在Minecraft中创建独立窗口的LWJGL窗口封装库，旨在解决因Minecraft不同版本间原生GUI类如Screen的差异而需频繁修改自定义GUI代码的问题。',
+            'lwjgl101.quickstart': '📦 快速开始',
+            'lwjgl101.quickstart.item1': '项目仓库： <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub仓库</a>',
+            'lwjgl101.quickstart.item2': '如遇到问题，请在GitHub提交Issues：  <a href="https://github.com/ohhapple/LWJGLwindows/issues" target="_blank">GitHub Issues</a>',
+            'lwjgl101.quickstart.item3': '建议使用最新版本，可通过tag时间查看，一个tag代表一个版本，tag名称为版本号',
+            'lwjgl101.quickstart.item4': '本依赖库已发布在jitpack，在gradle配置文件repositories中引入jitpack仓库：<code>maven { url \'https://jitpack.io\' }</code>',
+            'lwjgl101.quickstart.item5': '导入gradle依赖，在gradle配置文件dependencies中导入依赖：<code>implementation \'com.github.ohhapple:LWJGLwindows:版本号\'</code>',
+            'lwjgl101.quickstart.item6': '打包进jar，在gradle配置文件dependencies中导入依赖后加入：<code>include \'com.github.ohhapple:LWJGLwindows:版本号\'</code>',
+            'lwjgl101.quickstart.item7': '或直接在gradle配置文件dependencies中加入：<code>include(implementation("com.github.ohhapple:LWJGLwindows:版本号"))</code>',
+            'lwjgl101.features': '✨ 主要特性',
+            'lwjgl101.feature1': '适配多版本GUI窗口创建而无需修改代码',
+            'lwjgl101.updates': '🚀 更新说明',
+            'lwjgl101.updates.item1': '移除了对Minecraft客户端实例的依赖，无需传递Minecraft客户端实例，以应对MC后续版本弃用opengl的问题',
+            'lwjgl101.updates.item2': '理论上，倘若有一天MC彻底弃用了opengl，开发者手动在gradle配置文件中导入opengl，本库仍可以正常使用',
+            'lwjgl101.updates.item3': '例如：<code>implementation "org.lwjgl:lwjgl-opengl:3.3.3"</code>',
+            'lwjgl101.updates.item4': 'windows运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-windows:3.3.3"</code>',
+            'lwjgl101.updates.item5': 'linux运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-linux:3.3.3"</code>',
+            'lwjgl101.updates.item6': 'macos运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-macos:3.3.3"</code>',
+            'lwjgl101.updates.item7': '添加了阻塞式关闭所有窗口的方法：<code>GuiWindows.shutdown()</code>',
+            'lwjgl101.constructors': '📝 部分构造方法',
+            'lwjgl101.constructors.desc1': '狭义全参构造(也可以使用其它重载的构造方法，使用默认值创建页面)',
+            'lwjgl101.constructors.desc2': '所谓的全参构造并不代表UI组件的所有参数，部分参数有默认值，可通过相关set方法设置，此处列出全参构造仅供参考使用',
+            'lwjgl101.constructors.desc3': '不推荐直接使用全参构造，推荐使用参数更少的方法重载初始化UI组件，然后通过相关set方法设置参数',
+            'lwjgl101.constructors.desc4': '多数情况下，参数的默认值是符合大多数情况的，但请自行探索',
+            'lwjgl101.example': '📝 示例(仅展示部分方法调用，其它方法自行探索)',
+            'lwjgl101.example.desc1': '该示例代码基于CarpetPlus项目，为CarpetPlus中的调试代码，仅作演示作用，并非成品',
+            'lwjgl101.example.desc2': '实际设计中建议设计成单例',
+            'lwjgl101.example.desc3': '在退出世界时建议调用GuiWindows.shutdown()阻塞式关闭所有窗口或调用GuiWindows.closeAllwindows()非阻塞式关闭所有窗口以确保窗口被正常关闭',
+            'lwjgl101.footer': '更多详情请查看 <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub 仓库</a> 或加入社区讨论。'
+        },
+        en: {
+            'lwjgl101.back': 'Back to LWJGLwindows Docs Index',
+            'lwjgl101.docTitle': 'LWJGLwindows openglv1.0.1 Documentation',
+            'lwjgl101.docDesc': 'A LWJGL window wrapper library for creating independent windows in Minecraft, designed to solve the problem of frequently modifying custom GUI code due to differences in native GUI classes (like Screen) across Minecraft versions.',
+            'lwjgl101.quickstart': '📦 Quick Start',
+            'lwjgl101.quickstart.item1': 'Project repository: <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub repository</a>',
+            'lwjgl101.quickstart.item2': 'If you encounter problems, please submit issues on GitHub:  <a href="https://github.com/ohhapple/LWJGLwindows/issues" target="_blank">GitHub Issues</a>',
+            'lwjgl101.quickstart.item3': 'It is recommended to use the latest version, which can be identified by tag time. Each tag represents a version, and the tag name is the version number.',
+            'lwjgl101.quickstart.item4': 'This library is published on jitpack. Add the jitpack repository in the gradle build file: <code>maven { url \'https://jitpack.io\' }</code>',
+            'lwjgl101.quickstart.item5': 'Add the dependency in the gradle build file: <code>implementation \'com.github.ohhapple:LWJGLwindows:version\'</code>',
+            'lwjgl101.quickstart.item6': 'To include it in the jar, after adding the dependency, add: <code>include \'com.github.ohhapple:LWJGLwindows:version\'</code>',
+            'lwjgl101.quickstart.item7': 'Or directly in the dependencies block: <code>include(implementation("com.github.ohhapple:LWJGLwindows:version"))</code>',
+            'lwjgl101.features': '✨ Key Features',
+            'lwjgl101.feature1': 'Adapt to multi-version GUI window creation without modifying code',
+            'lwjgl101.updates': '🚀 Changelog',
+            'lwjgl101.updates.item1': 'Removed dependency on Minecraft client instance; no need to pass the Minecraft client instance to handle future deprecation of OpenGL in MC.',
+            'lwjgl101.updates.item2': 'Theoretically, if MC completely deprecates OpenGL in the future, developers can manually import OpenGL in the gradle build file, and this library will still work.',
+            'lwjgl101.updates.item3': 'For example: <code>implementation "org.lwjgl:lwjgl-opengl:3.3.3"</code>',
+            'lwjgl101.updates.item4': 'Windows runtime: <code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-windows:3.3.3"</code>',
+            'lwjgl101.updates.item5': 'Linux runtime: <code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-linux:3.3.3"</code>',
+            'lwjgl101.updates.item6': 'macOS runtime: <code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-macos:3.3.3"</code>',
+            'lwjgl101.updates.item7': 'Added a blocking method to close all windows: <code>GuiWindows.shutdown()</code>',
+            'lwjgl101.constructors': '📝 Partial Constructors',
+            'lwjgl101.constructors.desc1': 'Narrow full-parameter constructor (you can also use other overloaded constructors to create pages with default values)',
+            'lwjgl101.constructors.desc2': 'The so-called full-parameter constructor does not represent all parameters of the UI component. Some parameters have default values and can be set through related setter methods. The full-parameter constructors listed here are for reference only.',
+            'lwjgl101.constructors.desc3': 'It is not recommended to directly use the full-parameter constructor. It is better to initialize UI components with fewer parameter overloads and then set parameters through setter methods.',
+            'lwjgl101.constructors.desc4': 'In most cases, the default parameter values are suitable for most situations, but feel free to explore.',
+            'lwjgl101.example': '📝 Example (only some method calls are shown; explore other methods yourself)',
+            'lwjgl101.example.desc1': 'This example code is based on the CarpetPlus project and is debug code in CarpetPlus. It is for demonstration only and not a final product.',
+            'lwjgl101.example.desc2': 'In actual design, it is recommended to design as a singleton.',
+            'lwjgl101.example.desc3': 'When exiting the world, it is recommended to call GuiWindows.shutdown() (blocking) or GuiWindows.closeAllwindows() (non-blocking) to ensure windows are properly closed.',
+            'lwjgl101.footer': 'For more details, please check the <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub repository</a> or join the community discussion.'
+        }
+    };
 
-        <main>
-            <div style="margin: 2rem 0;">
-                <a href="../lwjglwindows-docs.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> 返回LWJGLwindows文档索引</a>
-            </div>
-            <div class="hero" style="max-width: 800px;">
-                <span class="hero-badge"><i class="fas fa-window-maximize"></i> LWJGLwindows</span>
-                <h1>LWJGLwindows openglv1.0.1 doc</h1>
-                <p>这是一个用于在Minecraft中创建独立窗口的LWJGL窗口封装库旨在解决因Minecraft不同版本间原生GUI类如Screen的差异而需频繁修改自定义GUI代码的问题。</p>
-            </div>
-            <div class="list-section" style="margin-top: 2rem;">
-                <h3>📦 快速开始</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>项目仓库： <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub仓库</a></li>
-                    <li>如遇到问题，请在GitHub提交Issues： <a href="https://github.com/ohhapple/LWJGLwindows/issues" target="_blank">GitHub Issues</a></li>
-                    <li>建议使用最新版本，可通过tag时间查看，一个tag代表一个版本，tag名称为版本号</li>
-                    <li>本依赖库已发布在jitpack，在gradle配置文件repositories中引入jitpack仓库：<code>maven { url 'https://jitpack.io' }</code></li>
-                    <li>导入gradle依赖，在gradle配置文件dependencies中导入依赖：<code>implementation 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
-                    <li>打包进jar，在gradle配置文件dependencies中导入依赖后加入：<code>include 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
-                    <li>或直接在gradle配置文件dependencies中加入：<code>include(implementation("com.github.ohhapple:LWJGLwindows:版本号"))</code></li>
-                </ul>
-                <h3>✨ 主要特性</h3>🚀
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>适配多版本GUI窗口创建而无需修改代码</li>
-                </ul>
-                <h3>🚀 更新说明</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>移除了对Minecraft客户端实例的依赖，不必须传递任何Minecraft，以应对MC后续版本弃用opengl的问题</li>
-                    <li>理论上，倘若有一天MC彻底弃用了opengl，开发者手动在gradle配置文件中导入opengl，本库仍可以正常使用</li>
-                    <li>例如：<code>implementation "org.lwjgl:lwjgl-opengl:3.3.3"</code></li>
-                    <li>windows运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-windows:3.3.3"</code></li>
-                    <li>linux运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-linux:3.3.3"</code></li>
-                    <li>macos运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-macos:3.3.3"</code></li>
-                    <li>添加了阻塞式关闭所有窗口的方法：：<code>GuiWindows.shutdown()</code></li>
-                </ul>
-                <h3>📝 部分构造方法</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>狭义全参构造(也可以使用其它重载的构造方法，使用默认值创建页面)</li>
-                    <li>所谓的全参构造并不代表UI组件的所有参数，部分参数有默认值，可通过相关set方法设置，此处列出全参构造仅供参考使用</li>
-                    <li>不推荐直接使用全参构造，推荐使用参数更少的方法重载初始化UI组件，然后通过相关set方法设置参数</li>
-                    <li>多数情况下，参数的默认值是符合大多数情况的，但请自行探索</li>
-                </ul>
-                <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+    Object.assign(window.i18n.zh, pageI18n.zh);
+    Object.assign(window.i18n.en, pageI18n.en);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        content.innerHTML = `
+                <div style="margin: 2rem 0;">
+                    <a href="../lwjglwindows-docs.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> <span data-i18n="lwjgl101.back">返回LWJGLwindows文档索引</span></a>
+                </div>
+                <div class="hero" style="max-width: 800px;">
+                    <span class="hero-badge"><i class="fas fa-window-maximize"></i> LWJGLwindows</span>
+                    <h1 data-i18n="lwjgl101.docTitle">LWJGLwindows openglv1.0.1 文档</h1>
+                    <p data-i18n="lwjgl101.docDesc">这是一个用于在Minecraft中创建独立窗口的LWJGL窗口封装库旨在解决因Minecraft不同版本间原生GUI类如Screen的差异而需频繁修改自定义GUI代码的问题。</p>
+                </div>
+                <div class="list-section" style="margin-top: 2rem;">
+                    <h3 data-i18n="lwjgl101.quickstart">📦 快速开始</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="lwjgl101.quickstart.item1">项目仓库： <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub仓库</a></li>
+                        <li data-i18n="lwjgl101.quickstart.item2">如遇到问题，请在GitHub提交Issues： <a href="https://github.com/ohhapple/LWJGLwindows/issues" target="_blank">GitHub Issues</a></li>
+                        <li data-i18n="lwjgl101.quickstart.item3">建议使用最新版本，可通过tag时间查看，一个tag代表一个版本，tag名称为版本号</li>
+                        <li data-i18n="lwjgl101.quickstart.item4">本依赖库已发布在jitpack，在gradle配置文件repositories中引入jitpack仓库：<code>maven { url 'https://jitpack.io' }</code></li>
+                        <li data-i18n="lwjgl101.quickstart.item5">导入gradle依赖，在gradle配置文件dependencies中导入依赖：<code>implementation 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
+                        <li data-i18n="lwjgl101.quickstart.item6">打包进jar，在gradle配置文件dependencies中导入依赖后加入：<code>include 'com.github.ohhapple:LWJGLwindows:版本号'</code></li>
+                        <li data-i18n="lwjgl101.quickstart.item7">或直接在gradle配置文件dependencies中加入：<code>include(implementation("com.github.ohhapple:LWJGLwindows:版本号"))</code></li>
+                    </ul>
+                    <h3 data-i18n="lwjgl101.features">✨ 主要特性</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="lwjgl101.feature1">适配多版本GUI窗口创建而无需修改代码</li>
+                    </ul>
+                    <h3 data-i18n="lwjgl101.updates">🚀 更新说明</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="lwjgl101.updates.item1">移除了对Minecraft客户端实例的依赖，无需传递Minecraft客户端实例，以应对MC后续版本弃用opengl的问题</li>
+                        <li data-i18n="lwjgl101.updates.item2">理论上，倘若有一天MC彻底弃用了opengl，开发者手动在gradle配置文件中导入opengl，本库仍可以正常使用</li>
+                        <li data-i18n="lwjgl101.updates.item3">例如：<code>implementation "org.lwjgl:lwjgl-opengl:3.3.3"</code></li>
+                        <li data-i18n="lwjgl101.updates.item4">windows运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-windows:3.3.3"</code></li>
+                        <li data-i18n="lwjgl101.updates.item5">linux运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-linux:3.3.3"</code></li>
+                        <li data-i18n="lwjgl101.updates.item6">macos运行环境：<code>runtimeOnly "org.lwjgl:lwjgl-opengl::natives-macos:3.3.3"</code></li>
+                        <li data-i18n="lwjgl101.updates.item7">添加了阻塞式关闭所有窗口的方法：<code>GuiWindows.shutdown()</code></li>
+                    </ul>
+                    <h3 data-i18n="lwjgl101.constructors">📝 部分构造方法</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="lwjgl101.constructors.desc1">狭义全参构造(也可以使用其它重载的构造方法，使用默认值创建页面)</li>
+                        <li data-i18n="lwjgl101.constructors.desc2">所谓的全参构造并不代表UI组件的所有参数，部分参数有默认值，可通过相关set方法设置，此处列出全参构造仅供参考使用</li>
+                        <li data-i18n="lwjgl101.constructors.desc3">不推荐直接使用全参构造，推荐使用参数更少的方法重载初始化UI组件，然后通过相关set方法设置参数</li>
+                        <li data-i18n="lwjgl101.constructors.desc4">多数情况下，参数的默认值是符合大多数情况的，但请自行探索</li>
+                    </ul>
+                    <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
         // 文本框全参构造
         public TextField(int x, int y, int w, int h, String p, int fontSize,//x坐标 y坐标 宽度w 高度h 默认显示提示文字 输入文字大小
                          float tr, float tg, float tb, // 输入文字颜色
@@ -137,14 +166,14 @@
         public ScrollContainer(int x, int y, int w, int h, //x坐标 y坐标 宽度 高度
                                float bgR, float bgG, float bgB, //背景色
                                float borderR, float borderG, float borderB) //边框色
-                </pre>
-                <h3>📝 示例(仅展示部分方法调用，其它方法自行探索)</h3>
-                <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                    <li>该示例代码基于CarpetPlus项目，为CarpetPlus中的调试代码，仅作演示作用，并非成品</li>
-                    <li>实际设计中建议设计成单例</li>
-                    <li>在退出世界时建议调用GuiWindows.shutdown()阻塞式关闭所有窗口或调用GuiWindows.closeAllwindows()非阻塞式关闭所有窗口以确保窗口被正常关闭</li>
-                </ul>
-                <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    </pre>
+                    <h3 data-i18n="lwjgl101.example">📝 示例(仅展示部分方法调用，其它方法自行探索)</h3>
+                    <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
+                        <li data-i18n="lwjgl101.example.desc1">该示例代码基于CarpetPlus项目，为CarpetPlus中的调试代码，仅作演示作用，并非成品</li>
+                        <li data-i18n="lwjgl101.example.desc2">实际设计中建议设计成单例</li>
+                        <li data-i18n="lwjgl101.example.desc3">在退出世界时建议调用GuiWindows.shutdown()阻塞式关闭所有窗口或调用GuiWindows.closeAllwindows()非阻塞式关闭所有窗口以确保窗口被正常关闭</li>
+                    </ul>
+                    <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
 /*
  * This file is part of the CarpetPlus project, licensed under the
  * GNU Lesser General Public License v3.0
@@ -244,29 +273,14 @@ public class ExamplePage {
         });
     }
 }
-                </pre>
+                    </pre>
 
-
-                <p style="margin-top: 2rem;">更多详情请查看 <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub 仓库</a> 或加入社区讨论。</p>
-            </div>
-        </main>
-    </div>
-
-    <div class="container">
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-copy">
-                    Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
+                    <p style="margin-top: 2rem;" data-i18n="lwjgl101.footer">更多详情请查看 <a href="https://github.com/ohhapple/LWJGLwindows" target="_blank">GitHub 仓库</a> 或加入社区讨论。</p>
                 </div>
-                <div class="footer-social">
-                    <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
+            `;
 
-<!-- 引入公共脚本 -->
-<script src="../../script.js"></script>
+        window.applyLanguage(localStorage.getItem('siteLanguage') || 'zh');
+    });
+</script>
 </body>
 </html>

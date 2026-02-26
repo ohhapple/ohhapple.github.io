@@ -956,7 +956,7 @@ body.dark .simple-toggle.active {
 
 /* ===== 简约模式背景 ===== */
 body.simple-mode {
-    background: url('images/bglight.jpg') no-repeat center center fixed;
+    background: url('../images/bglight.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -968,7 +968,7 @@ body.simple-mode::after {
 
 /* 暗黑模式下如果开启简约模式，仍使用图片背景（图片应适合暗黑） */
 body.dark.simple-mode {
-    background: url('images/bgdark.jpg') no-repeat center center fixed;
+    background: url('../images/bgdark.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 /*--------------------------------------------------------------------*/
@@ -1257,3 +1257,113 @@ body.dark .rule-item .rule-category {
 body.dark .rule-item code {
     background: rgba(255, 255, 255, 0.1);
 }
+
+
+
+/* ---------- 自定义字体 ---------- */
+@font-face {
+    font-family: 'CaerulaArbor';
+    src: url('../fonts/CaerulaArbor.woff2') format('woff2'),
+    url('../fonts/CaerulaArbor.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EndfieldByButan';
+    src: url('../fonts/EndfieldByButan.woff2') format('woff2'),
+    url('../fonts/EndfieldByButan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'FarNorthRunesRegular';
+    src: url('../fonts/FarNorthRunes-Regular.woff2') format('woff2'),
+    url('../fonts/FarNorthRunes-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ---------- 语言选择器（使用纯 CSS 绘制箭头） ---------- */
+.lang-selector {
+    margin-left: 0.5rem;
+    position: relative;
+}
+.lang-selector select {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 30px;
+    padding: 0.4rem 2rem 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: #2f3a5c;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.lang-selector::after {
+    content: '';
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-25%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #2f3a5c;
+    pointer-events: none;
+}
+body.dark .lang-selector select {
+    background: rgba(30, 40, 70, 0.9);
+    color: #b6c3f0;
+    border-color: #4a588f;
+}
+body.dark .lang-selector::after {
+    border-top-color: #b6c3f0;
+}
+
+/* ---------- 自定义语言字体类 ---------- */
+body.lang-CaerulaArbor {
+    font-family: 'CaerulaArbor', 'Inter', system-ui, sans-serif;
+}
+body.lang-EndfieldByButan {
+    font-family: 'EndfieldByButan', 'Inter', system-ui, sans-serif;
+}
+
+body.lang-FarNorthRunesRegular {
+    font-family: 'FarNorthRunesRegular', 'Inter', system-ui, sans-serif;
+}
+
+
+
+/* 顶部导航栏当前页面高亮 */
+.nav-links a.active {
+    color: #4c6ef5;
+    font-weight: 600;
+    border-bottom: 2px solid #4c6ef5;
+}
+
+/* 侧边栏菜单当前页面高亮 */
+.sidebar-menu a.active {
+    color: #4c6ef5;
+    background: rgba(76, 110, 245, 0.1);
+    font-weight: 600;
+}
+
+/* 暗黑模式适配 */
+body.dark .nav-links a.active {
+    color: #90a9ff;
+    border-bottom-color: #90a9ff;
+}
+
+body.dark .sidebar-menu a.active {
+    color: #90a9ff;
+    background: rgba(144, 169, 255, 0.15);
+}
+
+
+

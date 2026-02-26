@@ -4,155 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LWJGLwindows · 版本列表</title>
+    <link rel="icon" type="image/x-icon" href="../images/icon/ohhapple.ico">
+    <link rel="manifest" href="../images/icon/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <h3>导航</h3>
-        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
-    </div>
-    <ul class="sidebar-menu">
-        <li><a href="../index.html"><i class="fas fa-home"></i> 主页</a></li>
-        <li><a href="document.html"><i class="fas fa-file-alt"></i> 文档</a></li>
-        <li><a href="repositories.html"><i class="fas fa-code-branch"></i> 项目仓库</a></li>
-        <li><a href="../about/about.html"><i class="fas fa-users"></i> 关于</a></li>
-    </ul>
-    <div class="sidebar-footer">
-        <a href="https://github.com/ohhapple" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-    <div class="footer-copy">
-        Copyright © 2026 ohhapple
-    </div>
-</aside>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<div class="wrapper">
-    <div class="container">
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="logo">
-                    <i class="fas fa-book-open"></i>
-                    <span>ohhapple<span style="font-weight:300; color:#5d71b0;">•</span>docs</span>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html">主页</a>
-                <a href="document.html">文档</a>
-                <a href="repositories.html">项目仓库</a>
-            </div>
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="darkSwitch">
-                    <span class="slider round">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </span>
-                </label>
-            </div>
-            <div class="simple-toggle" id="simpleToggle">
-                <i class="fas fa-image"></i>
-            </div>
-            <div class="navbar-github">
-                <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-        </nav>
-
-        <main>
-            <div style="margin: 2rem 0;">
-                <a href="document.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> 返回文档索引</a>
-            </div>
-            <div class="hero" style="max-width: 800px;">
-                <span class="hero-badge"><i class="fas fa-window-maximize"></i> LWJGLwindows 版本列表</span>
-                <h1>LWJGLwindows 所有版本</h1>
-                <p>选择对应版本查看详细文档和更新说明。</p>
-            </div>
-
-            <!-- 搜索框 -->
-            <div class="search-wrapper">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="搜索版本号..." autocomplete="off">
-                </div>
-            </div>
-
-            <div class="docs-grid" id="docsGrid">
-                <!-- 版本卡片示例，按需增删 -->
-                <a href="lwjglwindows/lwjglwindows-docs-openglv1.0.0.html" style="text-decoration: none;" class="doc-card-link">
-                    <article class="doc-card">
-                        <div class="card-icon"><i class="fas fa-tag"></i></div>
-                        <h3>openglv1.0.0</h3>
-                        <p>发布日期：2026-02-19<br>适用于opengl渲染器</p>
-                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">查看 <i class="fas fa-arrow-right"></i></span></div>
-                    </article>
-                </a>
-
-                <a href="lwjglwindows/lwjglwindows-docs-openglv1.0.1.html" style="text-decoration: none;" class="doc-card-link">
-                    <article class="doc-card">
-                        <div class="card-icon"><i class="fas fa-tag"></i></div>
-                        <h3>openglv1.0.1</h3>
-                        <p>发布日期：2026-02-21<br>移除了对Minecraft客户端实例的依赖，添加了阻塞式关闭所有窗口的方法</p>
-                        <div class="card-meta"><span class="tag"><i class="fas fa-book"></i> 文档</span><span class="doc-link">查看 <i class="fas fa-arrow-right"></i></span></div>
-                    </article>
-                </a>
-                <!-- 可以继续添加更多版本 -->
-
-            </div>
-
-            <div style="margin: 3rem 0; text-align: center; opacity: 0.7;">
-                <p>共 <span id="versionCount">4</span> 个版本</p>
-            </div>
-        </main>
-    </div>
-
-    <div class="container">
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-copy">
-                    Copyright © 2026 ohhapple  <i class="fas fa-heart"></i> <i class="fas fa-mug-saucer"></i>
-                </div>
-                <div class="footer-social">
-                    <a href="https://github.com/ohhapple" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
-
-<!-- 引入公共脚本 -->
-<script src="../script.js"></script>
-<!-- 可选：更新版本计数（搜索时动态更新） -->
+<script src="../js/script.js"></script>
 <script>
-    (function() {
-        // 更新版本计数
-        function updateVersionCount() {
-            const cards = document.querySelectorAll('.doc-card-link');
-            const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
-            const countSpan = document.getElementById('versionCount');
-            if (countSpan) {
-                countSpan.textContent = visibleCards.length;
-            }
-        }
+    renderCommonLayout('docs', '../');
 
-        // 初始计数
-        updateVersionCount();
-
-        // 监听搜索输入，计数更新
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                // 由于 script.js 中的搜索会设置 display，我们延迟一下等待 DOM 更新
-                setTimeout(updateVersionCount, 10);
-            });
+    // 本页独有翻译
+    const pageI18n = {
+        zh: {
+            'lwjgl.versionlist.back': '返回文档索引',
+            'lwjgl.versionlist.badge': 'LWJGLwindows 版本列表',
+            'lwjgl.versionlist.title': 'LWJGLwindows 所有版本',
+            'lwjgl.versionlist.desc': '选择对应版本查看详细文档和更新说明。',
+            'lwjgl.versionlist.searchPlaceholder': '搜索版本号...',
+            'lwjgl.versionlist.count': '共',
+            'lwjgl.versionlist.versions': '个版本',
+            'lwjgl.versionlist.card1.title': 'openglv1.0.0',
+            'lwjgl.versionlist.card1.desc': '发布日期：2026-02-19<br>适用于opengl渲染器',
+            'lwjgl.versionlist.card2.title': 'openglv1.0.1',
+            'lwjgl.versionlist.card2.desc': '发布日期：2026-02-21<br>移除了对Minecraft客户端实例的依赖',
+            'common.doc': '文档',
+            'common.view': '查看'
+        },
+        en: {
+            'lwjgl.versionlist.back': 'Back to Docs Index',
+            'lwjgl.versionlist.badge': 'LWJGLwindows Version List',
+            'lwjgl.versionlist.title': 'All LWJGLwindows Versions',
+            'lwjgl.versionlist.desc': 'Select a version to view detailed documentation and release notes.',
+            'lwjgl.versionlist.searchPlaceholder': 'Search version...',
+            'lwjgl.versionlist.count': 'Total',
+            'lwjgl.versionlist.versions': 'versions',
+            'lwjgl.versionlist.card1.title': 'openglv1.0.0',
+            'lwjgl.versionlist.card1.desc': 'Release Date: 2026-02-19<br>Suitable for OpenGL renderer',
+            'lwjgl.versionlist.card2.title': 'openglv1.0.1',
+            'lwjgl.versionlist.card2.desc': 'Release Date: 2026-02-21<br>Removed dependency on Minecraft client instance',
+            'common.doc': 'Docs',
+            'common.view': 'View'
         }
-    })();
+    };
+
+    Object.assign(window.i18n.zh, pageI18n.zh);
+    Object.assign(window.i18n.en, pageI18n.en);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        content.innerHTML = `
+                <div style="margin: 2rem 0;">
+                    <a href="document.html" style="color:#4c6ef5; text-decoration:none;"><i class="fas fa-chevron-left"></i> <span data-i18n="lwjgl.versionlist.back">返回文档索引</span></a>
+                </div>
+                <div class="hero" style="max-width: 800px;">
+                    <span class="hero-badge"><i class="fas fa-window-maximize"></i><span data-i18n="lwjgl.versionlist.badge">LWJGLwindows 版本列表</span></span>
+                    <h1 data-i18n="lwjgl.versionlist.title">LWJGLwindows 所有版本</h1>
+                    <p data-i18n="lwjgl.versionlist.desc">选择对应版本查看详细文档和更新说明。</p>
+                </div>
+
+                <div class="search-wrapper">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="" data-i18n-placeholder="lwjgl.versionlist.searchPlaceholder" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="docs-grid" id="docsGrid">
+                    <a href="lwjglwindows/lwjglwindows-docs-openglv1.0.0.html" style="text-decoration: none;" class="doc-card-link">
+                        <article class="doc-card">
+                            <div class="card-icon"><i class="fas fa-tag"></i></div>
+                            <h3 data-i18n="lwjgl.versionlist.card1.title">openglv1.0.0</h3>
+                            <p data-i18n="lwjgl.versionlist.card1.desc">发布日期：2026-02-19<br>适用于opengl渲染器</p>
+                            <div class="card-meta">
+                                <span class="tag"><i class="fas fa-book"></i> <span data-i18n="common.doc">文档</span></span>
+                                <span class="doc-link"><span data-i18n="common.view">查看</span> <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </article>
+                    </a>
+                    <a href="lwjglwindows/lwjglwindows-docs-openglv1.0.1.html" style="text-decoration: none;" class="doc-card-link">
+                        <article class="doc-card">
+                            <div class="card-icon"><i class="fas fa-tag"></i></div>
+                            <h3 data-i18n="lwjgl.versionlist.card2.title">openglv1.0.1</h3>
+                            <p data-i18n="lwjgl.versionlist.card2.desc">发布日期：2026-02-21<br>移除了对Minecraft客户端实例的依赖</p>
+                            <div class="card-meta">
+                                <span class="tag"><i class="fas fa-book"></i> <span data-i18n="common.doc">文档</span></span>
+                                <span class="doc-link"><span data-i18n="common.view">查看</span> <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+
+                <div style="margin: 3rem 0; text-align: center; opacity: 0.7;">
+                    <p><span data-i18n="lwjgl.versionlist.count">共</span> <span id="versionCount">2</span> <span data-i18n="lwjgl.versionlist.versions">个版本</span></p>
+                </div>
+            `;
+
+        // 应用当前语言翻译
+        window.applyLanguage(localStorage.getItem('siteLanguage') || 'zh');
+        window.updateVersionCount();
+    });
 </script>
 </body>
 </html>
