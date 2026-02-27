@@ -26,12 +26,12 @@
             }
         }
 
-        /* ----- 禁止用户选中任何内容（保持沉浸感）----- */
+        /* ----- 禁止用户选中任何内容 ----- */
         html, body {
-            -webkit-user-select: none;  /* Chrome, Safari, Opera */
-            -moz-user-select: none;     /* Firefox */
-            -ms-user-select: none;      /* Internet Explorer/Edge */
-            user-select: none;           /* 非前缀版本，标准语法 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .parallax-container {
@@ -49,7 +49,7 @@
             width: 100%;
             height: 100%;
             will-change: transform;
-            backdrop-filter: blur(0px);   /* 强制独立合成层，确保永不合并 */
+            backdrop-filter: blur(0px);   /* 强制独立合成层 */
             pointer-events: none;
         }
 
@@ -89,11 +89,10 @@
             display: inline-block;
         }
 
-        /* ----- 音乐控制按钮样式 ----- */
+        /* ----- 通用按钮样式（全屏、音乐、跳转）----- */
         .music-control {
             position: fixed;
             bottom: 25px;
-            right: 25px;
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -106,16 +105,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            cursor: url('images/mouse/normal.cur') 8 4, pointer;
             z-index: 10000;
             transition: all 0.3s ease;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            /* 重置按钮默认样式 (针对 button 元素) */
-
             outline: none;
             padding: 0;
             line-height: 1;
+            text-decoration: none;
+            /* 默认透明度 0.5 */
+            opacity: 0.5;
         }
 
         .music-control:hover {
@@ -123,6 +123,7 @@
             border-color: #7fd9ff;
             transform: scale(1.1);
             box-shadow: 0 0 25px #7fd9ff;
+            opacity: 1; /* 悬停时不透明，突出交互 */
         }
 
         .music-control:active {
@@ -139,7 +140,6 @@
 
     <div class="layer layer-mid2" id="layerMid2" data-speed="0.08">
         <div style="text-align: center; padding-top: 5vh;">
-            <!-- 银凇止境 添加可点击链接，pointer-events:auto 穿透父级限制，在新标签页打开加上（target="_blank"） -->
             <div class="main-title">
                 <a href="document/document.html"
                    style="text-decoration: none; color: inherit; pointer-events: auto; display: inline-block;">
@@ -151,15 +151,16 @@
     </div>
 </div>
 
-<!-- ===== 背景音乐 (默认静音, 由按钮控制) ===== -->
+<!-- ===== 背景音乐 ===== -->
 <audio id="bgMusic" loop preload="auto">
     <source src="images/audio/bgwm.mp3" type="audio/mpeg">
-    <!-- 请将你的音乐文件放在 images/audio/bg-music.mp3，或修改路径为实际位置。支持 MP3 格式。 -->
     您的浏览器不支持 audio 元素。
 </audio>
 
-<!-- 音乐控制按钮 (圆形, 悬浮) -->
-<button class="music-control" id="musicControl" aria-label="音乐播放控制">🔇</button>
+<!-- 右下角按钮组：全屏 + 音乐 + 跳转 (并排) -->
+<button class="music-control" id="fullscreenControl" style="right: 25px;" aria-label="全屏模式">⛶</button>
+<button class="music-control" id="musicControl" style="right: 69px;" aria-label="音乐播放控制">🔇</button>
+<a class="music-control" href="simple.html" rel="noopener" style="right: 113px; text-decoration: none;" aria-label="跳转到其他页面">🔗</a>
 
 <!-- 视差脚本 -->
 <script>
@@ -283,7 +284,7 @@
     })();
 </script>
 
-<!-- 音乐播放控制独立逻辑 -->
+<!-- 音乐播放控制逻辑 -->
 <script>
     (function() {
         const audio = document.getElementById('bgMusic');
@@ -291,30 +292,24 @@
 
         if (!audio || !controlBtn) return;
 
-        // 初始状态为暂停 (🔇)
-        // 注意: 部分浏览器可能阻止自动播放，我们保持初始图标为暂停
         controlBtn.textContent = '🔇';
 
-        // 点击切换播放/暂停
         controlBtn.addEventListener('click', function() {
             if (audio.paused) {
-                // 尝试播放，并处理可能的错误（比如文件不存在）
                 audio.play()
                     .then(() => {
-                        controlBtn.textContent = '🔊';  // 播放中图标
+                        controlBtn.textContent = '🔊';
                     })
                     .catch(err => {
-                        console.warn('音频播放失败，请检查音乐文件路径或格式：', err);
-                        // 播放失败时图标保持静音，但用户可再次尝试
+                        console.warn('音频播放失败:', err);
                         controlBtn.textContent = '🔇';
                     });
             } else {
                 audio.pause();
-                controlBtn.textContent = '🔇';  // 暂停图标
+                controlBtn.textContent = '🔇';
             }
         });
 
-        // 监听音频被其他方式暂停/播放（例如代码调用或音频自然结束——loop下不会结束）
         audio.addEventListener('pause', function() {
             controlBtn.textContent = '🔇';
         });
@@ -322,10 +317,91 @@
             controlBtn.textContent = '🔊';
         });
 
-        // 如果音频加载失败，至少让按钮可点击尝试
         audio.addEventListener('error', function() {
-            console.error('音频加载失败，请检查网络或文件路径');
-            // 不改变图标，用户点击时会触发play()并catch到错误
+            console.error('音频加载失败');
+        });
+    })();
+</script>
+
+<!-- 全屏控制脚本 (手动切换 + ESC同步) 已移除自动全屏 -->
+<script>
+    (function() {
+        const fullscreenBtn = document.getElementById('fullscreenControl');
+        if (!fullscreenBtn) return;
+
+        // 进入全屏
+        function requestFullscreen() {
+            const docElm = document.documentElement;
+            if (docElm.requestFullscreen) {
+                return docElm.requestFullscreen();
+            } else if (docElm.mozRequestFullScreen) {
+                return docElm.mozRequestFullScreen();
+            } else if (docElm.webkitRequestFullscreen) {
+                return docElm.webkitRequestFullscreen();
+            } else if (docElm.msRequestFullscreen) {
+                return docElm.msRequestFullscreen();
+            }
+            return Promise.reject('Fullscreen API not supported');
+        }
+
+        // 退出全屏
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        // 切换全屏
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && !document.mozFullScreenElement &&
+                !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                requestFullscreen().catch(err => {
+                    console.warn('全屏请求失败:', err);
+                });
+            } else {
+                exitFullscreen();
+            }
+        }
+
+        // 更新按钮图标
+        function updateIcon() {
+            if (document.fullscreenElement || document.mozFullScreenElement ||
+                document.webkitFullscreenElement || document.msFullscreenElement) {
+                fullscreenBtn.textContent = '✕';
+            } else {
+                fullscreenBtn.textContent = '⛶';
+            }
+        }
+
+        // 监听全屏变化（ESC 或 API 退出）
+        document.addEventListener('fullscreenchange', updateIcon);
+        document.addEventListener('webkitfullscreenchange', updateIcon);
+        document.addEventListener('mozfullscreenchange', updateIcon);
+        document.addEventListener('MSFullscreenChange', updateIcon);
+
+        // 按钮点击切换
+        fullscreenBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleFullscreen();
+        });
+
+        // 初始化图标
+        updateIcon();
+    })();
+</script>
+
+<!-- 阻止右键菜单 -->
+<script>
+    (function() {
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
         });
     })();
 </script>
@@ -334,7 +410,6 @@
 <script>
     (function() {
         document.addEventListener('keydown', function(e) {
-            // 检测 Ctrl+A 或 Cmd+A (Mac)
             if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A')) {
                 e.preventDefault();
                 return false;
@@ -343,9 +418,6 @@
     })();
 </script>
 
-<!-- 关键优化：为所有 .layer 添加 backdrop-filter: blur(0px); 强制合成层，即使没有信息块也流畅 -->
-<!-- 修改说明：将“银凇止境”文字包裹在可点击链接内，pointer-events:auto 确保点击有效，链接默认新窗口打开，样式完全继承原文字外观 -->
-<!-- 新增：右下角音乐控制按钮，支持播放/暂停背景音乐，按钮状态随音乐变化 -->
-<!-- 新增：全局禁止文本选中（user-select: none） + 拦截 Ctrl+A，保护沉浸式体验 -->
+<!-- 全屏按钮透明度0.5，悬停时1；手动点击切换全屏，ESC同步图标 -->
 </body>
 </html>

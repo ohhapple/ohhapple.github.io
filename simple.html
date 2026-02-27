@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ohhapple•docs · 主页</title>
+    <link rel="icon" type="image/x-icon" href="images/icon/ohhapple.ico">
+    <link rel="manifest" href="images/icon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/script.js"></script>
+<script>
+    renderCommonLayout('home', '');
+
+    const pageI18n = {
+        zh: {
+            'home.hero.title1': '文档主页・ohhapple Document Home',
+            'home.hero.title': '文档导航主页<br>Doc Navigation Home',
+            'home.hero.desc': '推荐使用电脑端访问，手机端页面兼容效果不佳<br>欢迎访问我的文档导航 - 这里存放我的笔记与文档，轻松直达<br>Welcome to my document navigation - here you can find my notes and documents, easily accessible.',
+            'home.hero.btn1': '浏览全部文档',
+            'home.hero.btn2': '查看项目仓库',
+            'home.popular.title': '📘 热门文档',
+            'home.popular.viewAll': '查看全部',
+            'docs.carpetplus.title': 'CarpetPlus',
+            'docs.carpetplus.desc': 'Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。',
+            'docs.lwjglwindows.title': 'LWJGLwindows',
+            'docs.lwjglwindows.desc': 'LWJGL 窗口封装库，旨在解决Minecraft不同版本间GUI代码差异问题。',
+            'common.doc': '文档',
+            'common.read': '阅读'
+        },
+        en: {
+            'home.hero.title1': 'ohhapple・Document Home',
+            'home.hero.title': 'Document Navigation Home',
+            'home.hero.desc': 'Desktop recommended, mobile view may have issues.<br>Welcome to my document navigation - notes and documents, easily accessible.',
+            'home.hero.btn1': 'Browse All Docs',
+            'home.hero.btn2': 'View Repositories',
+            'home.popular.title': '📘 Popular Docs',
+            'home.popular.viewAll': 'View all',
+            'docs.carpetplus.title': 'CarpetPlus',
+            'docs.carpetplus.desc': 'Minecraft Carpet extension mod, providing more game feature control and optimization.',
+            'docs.lwjglwindows.title': 'LWJGLwindows',
+            'docs.lwjglwindows.desc': 'LWJGL window wrapper library to solve GUI code differences across Minecraft versions.',
+            'common.doc': 'Docs',
+            'common.read': 'Read'
+        }
+    };
+
+    Object.assign(window.i18n.zh, pageI18n.zh);
+    Object.assign(window.i18n.en, pageI18n.en);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        content.innerHTML = `
+                <section class="hero">
+                    <span class="hero-badge"><i class="far fa-compass" style="margin-right:0.4rem;"></i><span data-i18n="home.hero.title1">文档主页・ohhapple Document Home</span></span>
+                    <h1 data-i18n="home.hero.title">文档导航主页<br>Doc Navigation Home</h1>
+                    <p data-i18n="home.hero.desc">推荐使用电脑端访问，手机端页面兼容效果不佳<br>欢迎访问我的文档导航 - 这里存放我的笔记与文档，轻松直达<br>Welcome to my document navigation - here you can find my notes and documents, easily accessible.</p>
+                    <div class="hero-cta">
+                        <a href="document/document.html" class="btn btn-primary"><i class="fas fa-arrow-right"></i> <span data-i18n="home.hero.btn1">浏览全部文档</span></a>
+                        <a href="document/repositories.html" class="btn btn-outline"><i class="far fa-compass"></i> <span data-i18n="home.hero.btn2">查看项目仓库</span></a>
+                    </div>
+                </section>
+
+                <div class="section-title">
+                    <h2 data-i18n="home.popular.title">📘 热门文档</h2>
+                    <a href="document/document.html"><span data-i18n="home.popular.viewAll">查看全部</span> <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i></a>
+                </div>
+
+                <div class="docs-grid" id="docsGrid">
+                    <a href="document/carpetplus-docs.html" style="text-decoration: none;" class="doc-card-link">
+                        <article class="doc-card">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <h3 data-i18n="docs.carpetplus.title">CarpetPlus</h3>
+                            <p data-i18n="docs.carpetplus.desc">Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。</p>
+                            <div class="card-meta">
+                                <span class="tag"><i class="fas fa-book"></i> <span data-i18n="common.doc">文档</span></span>
+                                <span class="doc-link"><span data-i18n="common.read">阅读</span> <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </article>
+                    </a>
+                    <a href="document/lwjglwindows-docs.html" style="text-decoration: none;" class="doc-card-link">
+                        <article class="doc-card">
+                            <div class="card-icon"><i class="fas fa-window-maximize"></i></div>
+                            <h3 data-i18n="docs.lwjglwindows.title">LWJGLwindows</h3>
+                            <p data-i18n="docs.lwjglwindows.desc">LWJGL 窗口封装库，旨在解决Minecraft不同版本间GUI代码差异问题。</p>
+                            <div class="card-meta">
+                                <span class="tag"><i class="fas fa-book"></i> <span data-i18n="common.doc">文档</span></span>
+                                <span class="doc-link"><span data-i18n="common.read">阅读</span> <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            `;
+
+        window.applyLanguage(localStorage.getItem('siteLanguage') || 'zh');
+    });
+</script>
+</body>
+</html>
