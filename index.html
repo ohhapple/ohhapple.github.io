@@ -149,6 +149,12 @@
             <div class="sub-title">Document Entry</div>
         </div>
     </div>
+
+    <!-- 右下角按钮组：全屏 + 音乐 + 跳转 (并排) -->
+    <button class="music-control" id="fullscreenControl" style="right: 25px;" aria-label="全屏模式">⛶</button>
+    <button class="music-control" id="musicControl" style="right: 69px;" aria-label="音乐播放控制">🔇</button>
+    <a class="music-control" href="simple.html" rel="noopener" style="right: 113px; text-decoration: none;" aria-label="跳转到其他页面">🔗</a>
+
 </div>
 
 <!-- ===== 背景音乐 ===== -->
@@ -156,11 +162,6 @@
     <source src="images/audio/bgwm.mp3" type="audio/mpeg">
     您的浏览器不支持 audio 元素。
 </audio>
-
-<!-- 右下角按钮组：全屏 + 音乐 + 跳转 (并排) -->
-<button class="music-control" id="fullscreenControl" style="right: 25px;" aria-label="全屏模式">⛶</button>
-<button class="music-control" id="musicControl" style="right: 69px;" aria-label="音乐播放控制">🔇</button>
-<a class="music-control" href="simple.html" rel="noopener" style="right: 113px; text-decoration: none;" aria-label="跳转到其他页面">🔗</a>
 
 <!-- 视差脚本 -->
 <script>
@@ -208,13 +209,6 @@
             });
         }
 
-        function handleMouseLeave() {
-            layerStates.forEach(state => {
-                state.targetX = 0;
-                state.targetY = 0;
-            });
-        }
-
         function animateLayers() {
             layerStates.forEach(state => {
                 const newX = state.currentX + (state.targetX - state.currentX) * lerpFactor;
@@ -230,7 +224,6 @@
         }
 
         container.addEventListener('mousemove', handleMouseMove);
-        container.addEventListener('mouseleave', handleMouseLeave);
 
         animateLayers();
     })();
@@ -323,7 +316,7 @@
     })();
 </script>
 
-<!-- 全屏控制脚本 (手动切换 + ESC同步) 已移除自动全屏 -->
+<!-- 全屏控制脚本 (手动切换 + ESC同步) -->
 <script>
     (function() {
         const fullscreenBtn = document.getElementById('fullscreenControl');
@@ -418,6 +411,5 @@
     })();
 </script>
 
-<!-- 全屏按钮透明度0.5，悬停时1；手动点击切换全屏，ESC同步图标 -->
 </body>
 </html>
