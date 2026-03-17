@@ -255,7 +255,7 @@
                     <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
                 </div>
                 <ul class="sidebar-menu">
-                    <li><a href="${basePath}index.html" class="${currentPage === 'home' ? 'active' : ''}"><i class="fas fa-home"></i> <span data-i18n="nav.home">主页</span></a></li>
+                    <li><a href="${basePath}simple.html" class="${currentPage === 'home' ? 'active' : ''}"><i class="fas fa-home"></i> <span data-i18n="nav.home">主页</span></a></li>
                     <li><a href="${basePath}document/document.html" class="${currentPage === 'docs' ? 'active' : ''}"><i class="fas fa-file-alt"></i> <span data-i18n="nav.docs">文档</span></a></li>
                     <li><a href="${basePath}document/repositories.html" class="${currentPage === 'repos' ? 'active' : ''}"><i class="fas fa-code-branch"></i> <span data-i18n="nav.repos">项目仓库</span></a></li>
                     <li><a href="${basePath}about/about.html" class="${currentPage === 'about' ? 'active' : ''}"><i class="fas fa-users"></i> <span data-i18n="nav.about">关于</span></a></li>
@@ -282,7 +282,7 @@
                             </div>
                         </div>
                         <div class="nav-links">
-                            <a href="${basePath}index.html" class="${currentPage === 'home' ? 'active' : ''}"><span data-i18n="nav.home">主页</span></a>
+                            <a href="${basePath}simple.html" class="${currentPage === 'home' ? 'active' : ''}"><span data-i18n="nav.home">主页</span></a>
                             <a href="${basePath}document/document.html" class="${currentPage === 'docs' ? 'active' : ''}"><span data-i18n="nav.docs">文档</span></a>
                             <a href="${basePath}document/repositories.html" class="${currentPage === 'repos' ? 'active' : ''}"><span data-i18n="nav.repos">项目仓库</span></a>
                         </div>
