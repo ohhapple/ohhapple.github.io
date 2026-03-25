@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ohhapple • docs</title>
     <link rel="icon" type="image/x-icon" href="images/icon/ohhapple.ico">
     <link rel="manifest" href="images/icon/site.webmanifest">
@@ -11,406 +11,366 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
         }
 
         body {
-            background-color: #0a1c2c;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            overflow: hidden;
-            cursor: url('images/mouse/normal.cur') 4 4, auto;
-            input, textarea, [contenteditable="true"] {
-                cursor: url('images/mouse/handwriting.cur') 4 8, text;
-            }
-            a, button, [role="button"] {
-                cursor: url('images/mouse/normal.cur') 8 4, pointer;
-            }
-        }
-
-        /* ----- 禁止用户选中任何内容 ----- */
-        html, body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .parallax-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            background: #0a1c2c;
-        }
-
-        .layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            will-change: transform;
-            backdrop-filter: blur(0px);   /* 强制独立合成层 */
-            pointer-events: none;
-        }
-
-        .layer-video {
-            object-fit: cover;
-            width: 110% !important;
-            height: 110% !important;
-            left: -5% !important;
-            top: -5% !important;
-            pointer-events: none;
-        }
-
-        .main-title {
-            text-shadow: 0 0 30px #7fd9ff, 0 0 60px #3f7e9a;
-            font-size: clamp(4rem, 14vw, 9rem);
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 1.2;
-            filter: drop-shadow(0 8px 12px black);
-            background: linear-gradient(135deg, #ffffff, #b0e0ff, #80c0ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            white-space: nowrap;
-        }
-        .sub-title {
-            color: #dff5ff;
-            font-size: 1.6rem;
-            letter-spacing: 0.5em;
-            margin-top: 1.5rem;
-            text-shadow: 0 4px 15px #0099cc;
-            background: transparent;
-            padding: 0.6rem 2.5rem;
-            font-weight: 300;
-            display: inline-block;
-        }
-
-        /* ----- 通用按钮样式（全屏、音乐、跳转）----- */
-        .music-control {
-            position: fixed;
-            bottom: 25px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(10, 30, 50, 0.75);
-            backdrop-filter: blur(6px);
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-            color: white;
-            font-size: 16px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e2a3e 0%, #0f172a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: url('images/mouse/normal.cur') 8 4, pointer;
-            z-index: 10000;
-            transition: all 0.3s ease;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            font-family: system-ui, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+            padding: 1.5rem;
+        }
+
+        .verify-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 460px;
+            padding: 2rem 1.8rem 2.2rem;
+            transition: transform 0.2s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .verify-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .shield-icon {
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .shield-icon svg {
+            width: 64px;
+            height: 64px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-align: center;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub {
+            text-align: center;
+            color: #475569;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.8rem;
+        }
+
+        .challenge-area {
+            background: #f8fafc;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .question-box {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+        }
+
+        .math-expression {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: monospace;
+            background: #f1f5f9;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            color: #0f172a;
+            letter-spacing: 2px;
+        }
+
+        .verify-input {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .verify-input input {
+            flex: 2;
+            padding: 0.9rem 1rem;
+            font-size: 1.1rem;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 60px;
+            background: white;
+            transition: all 0.2s;
+            font-weight: 500;
+            text-align: center;
             outline: none;
-            padding: 0;
-            line-height: 1;
-            text-decoration: none;
-            /* 默认透明度 0.5 */
-            opacity: 0.5;
         }
 
-        .music-control:hover {
-            background: rgba(20, 60, 90, 0.9);
-            border-color: #7fd9ff;
-            transform: scale(1.1);
-            box-shadow: 0 0 25px #7fd9ff;
-            opacity: 1; /* 悬停时不透明，突出交互 */
+        .verify-input input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
         }
 
-        .music-control:active {
-            transform: scale(0.95);
+        .verify-input button {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            padding: 0.9rem 1.6rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .verify-input button:hover {
+            background: #2563eb;
+            transform: scale(0.97);
+        }
+
+        .refresh-btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+
+        .refresh-btn button {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+
+        .refresh-btn button:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            padding: 0.5rem;
+            border-radius: 60px;
+            font-weight: 500;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .redirect-note {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-size: 0.75rem;
+            color: #5b6e8c;
+            background: #f1f5f9;
+            padding: 0.6rem;
+            border-radius: 40px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 1.8rem;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 480px) {
+            .verify-card {
+                padding: 1.5rem;
+            }
+            .math-expression {
+                font-size: 1.8rem;
+            }
+            .verify-input button {
+                padding: 0.8rem 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-<div class="parallax-container" id="parallaxContainer">
-    <video class="layer layer-video" id="layerVideo" data-speed="0.06" muted loop playsinline preload="auto">
-        <source src="images/video/bg30.mp4" type="video/mp4">
-        您的浏览器不支持 video 标签。
-    </video>
+<div class="verify-card">
+    <div class="shield-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L3 6V12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12V6L12 2Z" stroke="#3b82f6" stroke-width="1.5" fill="white" stroke-linecap="round"/>
+            <path d="M12 6V12L15 15" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="2" fill="#3b82f6"/>
+            <path d="M12 2L3 6M12 2L21 6" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    </div>
+    <h2>🔐 安全验证</h2>
+    <div class="sub">请完成下方验证，继续访问</div>
 
-    <div class="layer layer-mid2" id="layerMid2" data-speed="0.08">
-        <div style="text-align: center; padding-top: 5vh;">
-            <div class="main-title">
-                <a href="simple.html"
-                   style="text-decoration: none; color: inherit; pointer-events: auto; display: inline-block;">
-<!--                    银凇止境-->
-                    进入主页
-                </a>
-            </div>
-            <div class="sub-title">Document Entry</div>
+    <div class="challenge-area">
+        <div class="question-box">
+            <span class="math-expression" id="questionText">5 + 3 = ?</span>
         </div>
+        <div class="verify-input">
+            <input type="text" id="answerInput" placeholder="输入计算结果" autocomplete="off" inputmode="numeric">
+            <button id="verifyBtn">✓ 验证</button>
+        </div>
+        <div class="refresh-btn">
+            <button id="refreshBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 换一题</button>
+        </div>
+        <div id="messageBox" class="message"></div>
     </div>
 
-    <!-- 右下角按钮组：全屏 + 音乐 + 跳转 (并排) -->
-    <button class="music-control" id="fullscreenControl" style="right: 25px;" aria-label="全屏模式">⛶</button>
-    <button class="music-control" id="musicControl" style="right: 69px;" aria-label="音乐播放控制">🔇</button>
-    <a class="music-control" href="simple.html" rel="noopener" style="right: 113px; text-decoration: none;" aria-label="跳转到其他页面">🔗</a>
-
+    <div class="redirect-note">
+        ⚡ 验证成功后将自动跳转至目标页面
+    </div>
+    <div class="footer">
+        Copyright © 2026 ohhapple
+    </div>
 </div>
 
-<!-- ===== 背景音乐 ===== -->
-<audio id="bgMusic" loop preload="auto">
-    <source src="images/audio/bgwm.mp3" type="audio/mpeg">
-    您的浏览器不支持 audio 元素。
-</audio>
-
-<!-- 视差脚本 -->
 <script>
     (function() {
-        const container = document.getElementById('parallaxContainer');
-        const layers = document.querySelectorAll('.layer');
-        if (!container || layers.length === 0) return;
-
-        const layerStates = [];
-        layers.forEach(layer => {
-            layerStates.push({
-                element: layer,
-                currentX: 0,
-                currentY: 0,
-                targetX: 0,
-                targetY: 0,
-                speed: parseFloat(layer.getAttribute('data-speed')) || 0.1
-            });
-        });
-
-        let centerX = window.innerWidth / 2;
-        let centerY = window.innerHeight / 2;
-        const maxOffset = 800;
-        const lerpFactor = 0.03;
-
-        function updateCenter() {
-            centerX = window.innerWidth / 2;
-            centerY = window.innerHeight / 2;
-        }
-        window.addEventListener('resize', updateCenter);
-
-        function handleMouseMove(event) {
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
-
-            let offsetX = (mouseX - centerX) / centerX;
-            let offsetY = (mouseY - centerY) / centerY;
-
-            offsetX = Math.min(1, Math.max(-1, offsetX));
-            offsetY = Math.min(1, Math.max(-1, offsetY));
-
-            layerStates.forEach(state => {
-                state.targetX = -offsetX * state.speed * maxOffset;
-                state.targetY = -offsetY * state.speed * maxOffset;
-            });
+        // 跳转目标地址
+        const REDIRECT_URL = "simple.html";
+        let targetUrl = REDIRECT_URL;
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectParam = urlParams.get('redirect');
+        if (redirectParam && redirectParam.startsWith('http')) {
+            targetUrl = redirectParam;
         }
 
-        function animateLayers() {
-            layerStates.forEach(state => {
-                const newX = state.currentX + (state.targetX - state.currentX) * lerpFactor;
-                const newY = state.currentY + (state.targetY - state.currentY) * lerpFactor;
+        let currentAnswer = 0;
+        let currentQuestion = "";
 
-                state.currentX = newX;
-                state.currentY = newY;
-
-                state.element.style.transform = `translate(${newX.toFixed(1)}px, ${newY.toFixed(1)}px)`;
-            });
-
-            requestAnimationFrame(animateLayers);
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        container.addEventListener('mousemove', handleMouseMove);
+        function generateNewQuestion() {
+            const useAdd = Math.random() > 0.3;
+            let a = getRandomInt(2, 20);
+            let b = getRandomInt(1, 15);
 
-        animateLayers();
-    })();
-</script>
-
-<!-- 鼠标控制视频播放/暂停 -->
-<script>
-    (function() {
-        const video = document.getElementById('layerVideo');
-        if (!video) return;
-
-        video.pause();
-
-        const container = document.getElementById('parallaxContainer');
-        if (!container) return;
-
-        let idleTimer = null;
-        const idleDelay = 300;
-
-        function playVideo() {
-            if (video.paused) {
-                video.play().catch(err => console.log('视频播放需用户交互:', err));
-            }
-        }
-
-        function pauseVideo() {
-            if (!video.paused) {
-                video.pause();
-            }
-        }
-
-        function onMouseMove() {
-            if (idleTimer) {
-                clearTimeout(idleTimer);
-                idleTimer = null;
-            }
-            playVideo();
-            idleTimer = setTimeout(pauseVideo, idleDelay);
-        }
-
-        function onMouseLeave() {
-            if (idleTimer) {
-                clearTimeout(idleTimer);
-                idleTimer = null;
-            }
-            pauseVideo();
-        }
-
-        container.addEventListener('mousemove', onMouseMove);
-        container.addEventListener('mouseleave', onMouseLeave);
-    })();
-</script>
-
-<!-- 音乐播放控制逻辑 -->
-<script>
-    (function() {
-        const audio = document.getElementById('bgMusic');
-        const controlBtn = document.getElementById('musicControl');
-
-        if (!audio || !controlBtn) return;
-
-        controlBtn.textContent = '🔇';
-
-        controlBtn.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play()
-                    .then(() => {
-                        controlBtn.textContent = '🔊';
-                    })
-                    .catch(err => {
-                        console.warn('音频播放失败:', err);
-                        controlBtn.textContent = '🔇';
-                    });
+            if (useAdd) {
+                currentAnswer = a + b;
+                currentQuestion = `${a} + ${b}`;
             } else {
-                audio.pause();
-                controlBtn.textContent = '🔇';
+                if (a < b) [a, b] = [b, a];
+                currentAnswer = a - b;
+                currentQuestion = `${a} - ${b}`;
             }
-        });
-
-        audio.addEventListener('pause', function() {
-            controlBtn.textContent = '🔇';
-        });
-        audio.addEventListener('play', function() {
-            controlBtn.textContent = '🔊';
-        });
-
-        audio.addEventListener('error', function() {
-            console.error('音频加载失败');
-        });
-    })();
-</script>
-
-<!-- 全屏控制脚本 (手动切换 + ESC同步) -->
-<script>
-    (function() {
-        const fullscreenBtn = document.getElementById('fullscreenControl');
-        if (!fullscreenBtn) return;
-
-        // 进入全屏
-        function requestFullscreen() {
-            const docElm = document.documentElement;
-            if (docElm.requestFullscreen) {
-                return docElm.requestFullscreen();
-            } else if (docElm.mozRequestFullScreen) {
-                return docElm.mozRequestFullScreen();
-            } else if (docElm.webkitRequestFullscreen) {
-                return docElm.webkitRequestFullscreen();
-            } else if (docElm.msRequestFullscreen) {
-                return docElm.msRequestFullscreen();
-            }
-            return Promise.reject('Fullscreen API not supported');
+            document.getElementById('questionText').innerText = currentQuestion + " = ?";
         }
 
-        // 退出全屏
-        function exitFullscreen() {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
+        function refreshChallenge() {
+            generateNewQuestion();
+            const inputEl = document.getElementById('answerInput');
+            inputEl.value = '';
+            const msgDiv = document.getElementById('messageBox');
+            msgDiv.innerHTML = '';
+            msgDiv.className = 'message';
+            inputEl.focus();
         }
 
-        // 切换全屏
-        function toggleFullscreen() {
-            if (!document.fullscreenElement && !document.mozFullScreenElement &&
-                !document.webkitFullscreenElement && !document.msFullscreenElement) {
-                requestFullscreen().catch(err => {
-                    console.warn('全屏请求失败:', err);
-                });
-            } else {
-                exitFullscreen();
-            }
-        }
+        function verify() {
+            const inputEl = document.getElementById('answerInput');
+            const rawValue = inputEl.value.trim();
+            const msgDiv = document.getElementById('messageBox');
 
-        // 更新按钮图标
-        function updateIcon() {
-            if (document.fullscreenElement || document.mozFullScreenElement ||
-                document.webkitFullscreenElement || document.msFullscreenElement) {
-                fullscreenBtn.textContent = '✕';
-            } else {
-                fullscreenBtn.textContent = '⛶';
-            }
-        }
+            msgDiv.innerHTML = '';
+            msgDiv.className = 'message';
 
-        // 监听全屏变化（ESC 或 API 退出）
-        document.addEventListener('fullscreenchange', updateIcon);
-        document.addEventListener('webkitfullscreenchange', updateIcon);
-        document.addEventListener('mozfullscreenchange', updateIcon);
-        document.addEventListener('MSFullscreenChange', updateIcon);
-
-        // 按钮点击切换
-        fullscreenBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleFullscreen();
-        });
-
-        // 初始化图标
-        updateIcon();
-    })();
-</script>
-
-<!-- 阻止右键菜单 -->
-<script>
-    (function() {
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-    })();
-</script>
-
-<!-- 阻止 Ctrl+A / Cmd+A 全选 -->
-<script>
-    (function() {
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A')) {
-                e.preventDefault();
+            if (rawValue === "") {
+                msgDiv.innerHTML = "❌ 请输入计算结果";
+                msgDiv.classList.add('error');
+                inputEl.focus();
                 return false;
             }
-        });
+
+            const userAnswer = Number(rawValue);
+            if (isNaN(userAnswer)) {
+                msgDiv.innerHTML = "⚠️ 请输入有效的数字";
+                msgDiv.classList.add('error');
+                inputEl.focus();
+                return false;
+            }
+
+            if (userAnswer === currentAnswer) {
+                // 验证成功，立即跳转
+                const verifyBtn = document.getElementById('verifyBtn');
+                const refreshBtn = document.getElementById('refreshBtn');
+                verifyBtn.disabled = true;
+                refreshBtn.disabled = true;
+                verifyBtn.style.opacity = "0.6";
+                refreshBtn.style.opacity = "0.6";
+                verifyBtn.style.cursor = "not-allowed";
+                refreshBtn.style.cursor = "not-allowed";
+
+                window.location.href = targetUrl;
+                return true;
+            } else {
+                // 验证失败：显示错误提示，立即换题
+                msgDiv.innerHTML = "❌ 验证失败，已更换题目";
+                msgDiv.classList.add('error');
+                refreshChallenge();   // 立即换题
+                return false;
+            }
+        }
+
+        function init() {
+            generateNewQuestion();
+            const verifyBtn = document.getElementById('verifyBtn');
+            const refreshBtn = document.getElementById('refreshBtn');
+            const answerInput = document.getElementById('answerInput');
+
+            verifyBtn.addEventListener('click', verify);
+            refreshBtn.addEventListener('click', function() {
+                refreshChallenge();
+                // 确保按钮可用（如果之前验证成功时被禁用，但此时已恢复）
+                verifyBtn.disabled = false;
+                refreshBtn.disabled = false;
+                verifyBtn.style.opacity = "1";
+                refreshBtn.style.opacity = "1";
+                verifyBtn.style.cursor = "pointer";
+                refreshBtn.style.cursor = "pointer";
+            });
+            answerInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    verify();
+                }
+            });
+            answerInput.focus();
+        }
+
+        init();
     })();
 </script>
-
 </body>
 </html>

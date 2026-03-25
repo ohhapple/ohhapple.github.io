@@ -21,7 +21,7 @@
     const pageI18n = {
         zh: {
             'carpetplus.back': '返回CarpetPlus文档索引',
-            'carpetplus.docTitle': 'CarpetPlus fabric-1.21.10 文档',
+            'carpetplus.docTitle': 'CarpetPlus fabric-26.1 文档',
             'carpetplus.docDesc': 'Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。',
             'carpetplus.quickstart': '📦 快速开始',
             'carpetplus.quickstart.item1': '下载最新版本从 <a href="https://github.com/ohhapple/CarpetPlus/releases" target="_blank">GitHub Releases</a>',
@@ -29,20 +29,11 @@
             'carpetplus.quickstart.item3': '放入 Minecraft 的 mods 文件夹（需要 Fabric 加载器）',
             'carpetplus.quickstart.item4': '输入指令 /carpet 打开菜单 启用/禁用规则',
             'carpetplus.features': '✨ 主要特性',
-            'carpetplus.feature1': '首个公开发布的版本',
+            'carpetplus.feature1': '支持Minecraft26.1',
             'carpetplus.repoLink': '详情请访问 <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub 仓库</a>。',
             'carpetplus.rulesTitle': '📜 规则列表',
-            'carpetplus.commandsTitle': '📟 指令 [command]',
-            'carpetplus.commandsDesc': '关于玩家独立视距范围的指令：',
-            'carpetplus.commands.item1': '启用功能：/carpet playerSpecificChunks true',
-            'carpetplus.commands.item2': '开启功能后玩家默认视距被设置为10（不会超过服务器视距）',
-            'carpetplus.commands.item3': '设置玩家视距：/playerchunk set',
-            'carpetplus.commands.item4': '查看玩家视距：/playerchunk get',
-            'carpetplus.commands.item5': '列出所有设置：/playerchunk list',
-            'carpetplus.commands.item6': '查看状态：/playerchunk status',
-            'carpetplus.commands.item7': '统计信息：/chunkstats',
             'carpetplus.exampleTitle': '📝 示例代码',
-            // 规则标题及描述
+            // 规则标题及描述（根据md文档）
             'rule.SuperWindCharge.title': '风弹螺旋丸手里剑 (SuperWindCharge)',
             'rule.SuperWindCharge.desc': '使玩家投出的风弹伤害、范围、击退属性增大。',
             'rule.VillageAlwaysBreed.title': '村民一直繁殖 (VillageAlwaysBreed)',
@@ -64,7 +55,13 @@
             'rule.EquipmentUnbreak.title': '装备不消耗耐久 (EquipmentUnbreak)',
             'rule.EquipmentUnbreak.desc': '装备不消耗耐久。',
             'rule.ShulkerBoxNested.title': '潜影盒嵌套 (ShulkerBoxNested)',
-            'rule.ShulkerBoxNested.desc': '潜影盒可以嵌套，包括玩家手动放入和漏斗等放入。',
+            'rule.ShulkerBoxNested.desc': '潜影盒可以嵌套，可选被谁操作：仅玩家，仅漏斗发射器，或者全部。',
+            'rule.CarpetPlusNetwork.title': 'CarpetPlus网络协议总开关 (CarpetPlusNetwork)',
+            'rule.CarpetPlusNetwork.desc': 'CarpetPlus网络协议处理总开关，开启后可使用相关网络功能（默认开启）。',
+            'rule.GetPlayerFps.title': '获取服务器玩家FPS (GetPlayerFps)',
+            'rule.GetPlayerFps.desc': '获取服务器玩家FPS。',
+            'rule.AmethystShardMusicChannel.title': '紫水晶碎片音乐频道 (AmethystShardMusicChannel)',
+            'rule.AmethystShardMusicChannel.desc': '开启后手持紫水晶碎片右键也可打开音乐菜单GUI。',
             // 规则元信息
             'rule.type': '类型',
             'rule.default': '默认值',
@@ -74,7 +71,7 @@
             'rule.category.ohhapple': 'ohhapple',
             'rule.category.FEATURE': 'FEATURE',
             'rule.deprecated': '该规则在后续版本弃用',
-            // 右侧目录条目（保留换行）
+            // 右侧目录条目
             'rule.toc.title': '📑 目录',
             'rule.toc.SuperWindCharge': '风弹螺旋丸手里剑<br>(SuperWindCharge)',
             'rule.toc.VillageAlwaysBreed': '村民一直繁殖<br>(VillageAlwaysBreed)',
@@ -86,11 +83,22 @@
             'rule.toc.StackableEnchantedBook': '附魔书可堆叠<br>(StackableEnchantedBook)',
             'rule.toc.StackableTotemOfUndying': '不死图腾可堆叠<br>(StackableTotemOfUndying)',
             'rule.toc.EquipmentUnbreak': '装备不消耗耐久<br>(EquipmentUnbreak)',
-            'rule.toc.ShulkerBoxNested': '潜影盒嵌套<br>(ShulkerBoxNested)'
+            'rule.toc.ShulkerBoxNested': '潜影盒嵌套<br>(ShulkerBoxNested)',
+            'rule.toc.CarpetPlusNetwork': 'CarpetPlus网络协议总开关<br>(CarpetPlusNetwork)',
+            'rule.toc.GetPlayerFps': '获取服务器玩家FPS<br>(GetPlayerFps)',
+            'rule.toc.AmethystShardMusicChannel': '紫水晶碎片音乐频道<br>(AmethystShardMusicChannel)',
+            // 音乐频道板块
+            'carpetplus.music.title': '🎵 音乐频道',
+            'carpetplus.music.note1': '想边玩游戏边听音乐？本mod已实现音乐频道功能 ↓↓↓',
+            'carpetplus.music.note2': '注意: 由于部分歌曲为付费网络歌曲或无版权，所以本播放器无法播放相关资源,资源获取速度与网速有关，大约3-5秒',
+            'carpetplus.music.note3': '注意: 加入服务器多人音乐频道的多人一起听功能需开启CarpetPlus网络协议处理总开关(默认开启)(/carpet CarpetPlusNetwork true)后才能生效',
+            'carpetplus.music.cmd1': '++cp music 聊天框输入以打开音乐菜单GUI',
+            'carpetplus.music.cmd2': '/carpet CarpetPlusNetwork [boolean default=true]',
+            'carpetplus.music.cmd3': '/carpet AmethystShardMusicChannel [boolean default=false] 紫水晶碎片音乐频道'
         },
         en: {
             'carpetplus.back': 'Back to CarpetPlus Docs Index',
-            'carpetplus.docTitle': 'CarpetPlus fabric-1.21.10 Documentation',
+            'carpetplus.docTitle': 'CarpetPlus fabric-26.1 Documentation',
             'carpetplus.docDesc': 'Minecraft Carpet extension mod, providing more game feature control and optimization.',
             'carpetplus.quickstart': '📦 Quick Start',
             'carpetplus.quickstart.item1': 'Download the latest version from <a href="https://github.com/ohhapple/CarpetPlus/releases" target="_blank">GitHub Releases</a>',
@@ -98,20 +106,10 @@
             'carpetplus.quickstart.item3': 'Place it in the Minecraft mods folder (requires Fabric Loader)',
             'carpetplus.quickstart.item4': 'Use the command /carpet to open the menu and enable/disable rules',
             'carpetplus.features': '✨ Key Features',
-            'carpetplus.feature1': 'First public release',
+            'carpetplus.feature1': 'Support Minecraft 26.1',
             'carpetplus.repoLink': 'For more details, visit the <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub repository</a>.',
             'carpetplus.rulesTitle': '📜 Rule List',
-            'carpetplus.commandsTitle': '📟 Commands',
-            'carpetplus.commandsDesc': 'Commands for player-specific chunk loading:',
-            'carpetplus.commands.item1': 'Enable feature: /carpet playerSpecificChunks true',
-            'carpetplus.commands.item2': 'After enabling, the default player view distance is set to 10 (cannot exceed server view distance)',
-            'carpetplus.commands.item3': 'Set player view distance: /playerchunk set',
-            'carpetplus.commands.item4': 'Get player view distance: /playerchunk get',
-            'carpetplus.commands.item5': 'List all settings: /playerchunk list',
-            'carpetplus.commands.item6': 'Check status: /playerchunk status',
-            'carpetplus.commands.item7': 'Statistics: /chunkstats',
             'carpetplus.exampleTitle': '📝 Example Code',
-            // 规则标题及描述（英文仅显示规则名，不加中文括号）
             'rule.SuperWindCharge.title': 'SuperWindCharge',
             'rule.SuperWindCharge.desc': 'Increases damage, range, and knockback of wind charges thrown by players.',
             'rule.VillageAlwaysBreed.title': 'VillageAlwaysBreed',
@@ -133,8 +131,13 @@
             'rule.EquipmentUnbreak.title': 'EquipmentUnbreak',
             'rule.EquipmentUnbreak.desc': 'Equipment does not consume durability.',
             'rule.ShulkerBoxNested.title': 'ShulkerBoxNested',
-            'rule.ShulkerBoxNested.desc': 'Shulker boxes can be nested, including manual insertion and by hoppers, etc.',
-            // 规则元信息
+            'rule.ShulkerBoxNested.desc': 'Shulker boxes can be nested, with optional operator control: player only, hopper/dropper only, or all.',
+            'rule.CarpetPlusNetwork.title': 'CarpetPlusNetwork',
+            'rule.CarpetPlusNetwork.desc': 'Master switch for CarpetPlus network features (music sync, player data exchange). Enabled by default.',
+            'rule.GetPlayerFps.title': 'GetPlayerFps',
+            'rule.GetPlayerFps.desc': 'Retrieve real-time FPS of server players.',
+            'rule.AmethystShardMusicChannel.title': 'AmethystShardMusicChannel',
+            'rule.AmethystShardMusicChannel.desc': 'When enabled, right-clicking an amethyst shard opens the music GUI.',
             'rule.type': 'Type',
             'rule.default': 'Default',
             'rule.options': 'Options',
@@ -142,7 +145,6 @@
             'rule.category.ohhapple': 'ohhapple',
             'rule.category.FEATURE': 'FEATURE',
             'rule.deprecated': 'This rule is deprecated in later versions',
-            // 右侧目录条目（英文仅显示规则名，无换行也可，但保留<br>以保证样式统一）
             'rule.toc.title': '📑 Table of Contents',
             'rule.toc.SuperWindCharge': 'SuperWindCharge',
             'rule.toc.VillageAlwaysBreed': 'VillageAlwaysBreed',
@@ -154,7 +156,17 @@
             'rule.toc.StackableEnchantedBook': 'StackableEnchantedBook',
             'rule.toc.StackableTotemOfUndying': 'StackableTotemOfUndying',
             'rule.toc.EquipmentUnbreak': 'EquipmentUnbreak',
-            'rule.toc.ShulkerBoxNested': 'ShulkerBoxNested'
+            'rule.toc.ShulkerBoxNested': 'ShulkerBoxNested',
+            'rule.toc.CarpetPlusNetwork': 'CarpetPlusNetwork',
+            'rule.toc.GetPlayerFps': 'GetPlayerFps',
+            'rule.toc.AmethystShardMusicChannel': 'AmethystShardMusicChannel',
+            'carpetplus.music.title': '🎵 Music Channel',
+            'carpetplus.music.note1': 'Want to listen to music while playing? This mod implements a music channel feature ↓↓↓',
+            'carpetplus.music.note2': 'Note: Due to copyright restrictions, some songs may not be playable. Loading time is about 3-5 seconds depending on network speed.',
+            'carpetplus.music.note3': 'Note: Joining the server\'s multi-player music channel requires enabling CarpetPlusNetwork (enabled by default) (/carpet CarpetPlusNetwork true).',
+            'carpetplus.music.cmd1': 'Type ++cp music in chat to open the music menu GUI',
+            'carpetplus.music.cmd2': '/carpet CarpetPlusNetwork [boolean default=true]',
+            'carpetplus.music.cmd3': '/carpet AmethystShardMusicChannel [boolean default=false] Amethyst shard music channel'
         }
     };
 
@@ -171,7 +183,7 @@
                 </div>
                 <div class="hero" style="max-width: 800px;">
                     <span class="hero-badge"><i class="fas fa-cube"></i> CarpetPlus</span>
-                    <h1 data-i18n="carpetplus.docTitle">CarpetPlus fabric-1.21.10 文档</h1>
+                    <h1 data-i18n="carpetplus.docTitle">CarpetPlus fabric-26.1 文档</h1>
                     <p data-i18n="carpetplus.docDesc">Minecraft Carpet 扩展模组，提供更多游戏特性控制与优化。</p>
                 </div>
 
@@ -185,7 +197,7 @@
                     </ul>
                     <h3 data-i18n="carpetplus.features">✨ 主要特性</h3>
                     <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                        <li data-i18n="carpetplus.feature1">首个公开发布的版本</li>
+                        <li data-i18n="carpetplus.feature1">支持Minecraft26.1</li>
                     </ul>
 
                     <p style="margin-top: 2rem;" data-i18n="carpetplus.repoLink">详情请访问 <a href="https://github.com/ohhapple/CarpetPlus" target="_blank">GitHub 仓库</a>。</p>
@@ -196,7 +208,7 @@
                         <div class="rule-content">
                             <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;" data-i18n="carpetplus.rulesTitle">📜 规则列表</h3>
 
-                            <!-- 规则条目 - 全部添加 data-i18n 键 -->
+                            <!-- 规则条目 - 基于md文档完整14条 -->
                             <div id="rule-SuperWindCharge" class="rule-item">
                                 <h4 data-i18n="rule.SuperWindCharge.title">风弹螺旋丸手里剑 (SuperWindCharge)</h4>
                                 <div class="rule-meta">
@@ -314,13 +326,46 @@
                                     <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
                                     <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
                                 </div>
-                                <p data-i18n="rule.ShulkerBoxNested.desc">潜影盒可以嵌套，包括玩家手动放入和漏斗等放入。</p>
-                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true,false</code></p>
-                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet ShulkerBoxNested true</code></p>
+                                <p data-i18n="rule.ShulkerBoxNested.desc">潜影盒可以嵌套，可选被谁操作：仅玩家，仅漏斗发射器，或者全部。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>String</code> | <span data-i18n="rule.default">默认值</span>: <code>"false"</code> | <span data-i18n="rule.options">可选参数</span>: <code>"false","player","hopper","all"</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet ShulkerBoxNested all</code></p>
+                            </div>
+
+                            <div id="rule-CarpetPlusNetwork" class="rule-item">
+                                <h4 data-i18n="rule.CarpetPlusNetwork.title">CarpetPlus网络协议总开关 (CarpetPlusNetwork)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.CarpetPlusNetwork.desc">CarpetPlus网络协议处理总开关，开启后可使用相关网络功能（默认开启）。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>true</code> | <span data-i18n="rule.options">可选参数</span>: <code>true, false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet CarpetPlusNetwork true</code></p>
+                            </div>
+
+                            <div id="rule-GetPlayerFps" class="rule-item">
+                                <h4 data-i18n="rule.GetPlayerFps.title">获取服务器玩家FPS (GetPlayerFps)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.GetPlayerFps.desc">获取服务器玩家FPS。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>String</code> | <span data-i18n="rule.default">默认值</span>: <code>"false"</code> | <span data-i18n="rule.options">可选参数</span>: <code>"false","true"</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet GetPlayerFps true</code></p>
+                            </div>
+
+                            <div id="rule-AmethystShardMusicChannel" class="rule-item">
+                                <h4 data-i18n="rule.AmethystShardMusicChannel.title">紫水晶碎片音乐频道 (AmethystShardMusicChannel)</h4>
+                                <div class="rule-meta">
+                                    <span class="rule-category" data-i18n="rule.category.ohhapple">ohhapple</span>
+                                    <span class="rule-category" data-i18n="rule.category.FEATURE">FEATURE</span>
+                                </div>
+                                <p data-i18n="rule.AmethystShardMusicChannel.desc">开启后手持紫水晶碎片右键也可打开音乐菜单GUI。</p>
+                                <p><span data-i18n="rule.type">类型</span>: <code>boolean</code> | <span data-i18n="rule.default">默认值</span>: <code>false</code> | <span data-i18n="rule.options">可选参数</span>: <code>true, false</code></p>
+                                <p><span data-i18n="rule.enable">开启方法</span>: <code>/carpet AmethystShardMusicChannel true</code></p>
                             </div>
                         </div>
 
-                        <!-- 右侧目录（链接添加 data-i18n 键） -->
+                        <!-- 右侧目录 -->
                         <div class="rule-toc">
                             <h4 data-i18n="rule.toc.title">📑 目录</h4>
                             <div class="toc-search">
@@ -339,47 +384,28 @@
                                 <li><a href="#rule-StackableTotemOfUndying" data-i18n="rule.toc.StackableTotemOfUndying">不死图腾可堆叠<br>(StackableTotemOfUndying)</a></li>
                                 <li><a href="#rule-EquipmentUnbreak" data-i18n="rule.toc.EquipmentUnbreak">装备不消耗耐久<br>(EquipmentUnbreak)</a></li>
                                 <li><a href="#rule-ShulkerBoxNested" data-i18n="rule.toc.ShulkerBoxNested">潜影盒嵌套<br>(ShulkerBoxNested)</a></li>
+                                <li><a href="#rule-CarpetPlusNetwork" data-i18n="rule.toc.CarpetPlusNetwork">CarpetPlus网络协议总开关<br>(CarpetPlusNetwork)</a></li>
+                                <li><a href="#rule-GetPlayerFps" data-i18n="rule.toc.GetPlayerFps">获取服务器玩家FPS<br>(GetPlayerFps)</a></li>
+                                <li><a href="#rule-AmethystShardMusicChannel" data-i18n="rule.toc.AmethystShardMusicChannel">紫水晶碎片音乐频道<br>(AmethystShardMusicChannel)</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- 指令部分 -->
+                <!-- 音乐频道板块 -->
                 <div class="list-section" style="margin-top: 2rem;">
-                    <h3 data-i18n="carpetplus.commandsTitle">📟 指令 [command]</h3>
-                    <h3 data-i18n="carpetplus.commandsDesc">关于玩家独立视距范围的指令：</h3>
+                    <h3 data-i18n="carpetplus.music.title">🎵 音乐频道</h3>
+                    <p data-i18n="carpetplus.music.note1">想边玩游戏边听音乐？本mod已实现音乐频道功能 ↓↓↓</p>
+                    <p data-i18n="carpetplus.music.note2">注意: 由于部分歌曲为付费网络歌曲或无版权，所以本播放器无法播放相关资源,资源获取速度与网速有关，大约3-5秒</p>
+                    <p data-i18n="carpetplus.music.note3">注意: 加入服务器多人音乐频道的多人一起听功能需开启CarpetPlus网络协议处理总开关(默认开启)(/carpet CarpetPlusNetwork true)后才能生效</p>
                     <ul style="margin: 1rem 0 2rem 2rem; line-height: 1.8;">
-                        <li data-i18n="carpetplus.commands.item1">启用功能：<code>/carpet playerSpecificChunks true</code></li>
-                        <li data-i18n="carpetplus.commands.item2">开启功能后玩家默认视距被设置为10（不会超过服务器视距）</li>
-                        <li data-i18n="carpetplus.commands.item3">设置玩家视距：<code>/playerchunk set</code></li>
-                        <li data-i18n="carpetplus.commands.item4">查看玩家视距：<code>/playerchunk get</code></li>
-                        <li data-i18n="carpetplus.commands.item5">列出所有设置：<code>/playerchunk list</code></li>
-                        <li data-i18n="carpetplus.commands.item6">查看状态：<code>/playerchunk status</code></li>
-                        <li data-i18n="carpetplus.commands.item7">统计信息：<code>/chunkstats</code></li>
+                        <li><span data-i18n="carpetplus.music.cmd1">++cp music 聊天框输入以打开音乐菜单GUI</span></li>
+                        <li><span data-i18n="carpetplus.music.cmd2">/carpet CarpetPlusNetwork [boolean default=true]</span></li>
+                        <li><span data-i18n="carpetplus.music.cmd3">/carpet AmethystShardMusicChannel [boolean default=false] 紫水晶碎片音乐频道</span></li>
                     </ul>
-
-                    <h3 data-i18n="carpetplus.exampleTitle">📝 示例代码</h3>
-                    <pre style="background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-    启用功能
-    /carpet playerSpecificChunks true
-    开启功能后玩家默认视距被设置为10（不会超过服务器视距）
-    设置单个玩家
-    /playerchunk set 玩家A 10
-    设置多个玩家
-    /playerchunk set @a 10          # 所有玩家
-    /playerchunk set @r 8           # 随机玩家
-    /playerchunk set @p 12          # 最近的玩家
-    查看设置
-    /playerchunk get 玩家A
-    /playerchunk get @s             # 自己
-    列出所有设置
-    /playerchunk list
-    查看状态
-    /playerchunk status
-    统计信息
-    /chunkstats
-                    </pre>
                 </div>
+
+
                 <h3 style="margin-top: 3rem; margin-left: 2rem;"> </h3>
                 <p style="margin-left: 2rem; opacity: 0.7;"> </p>
             `;
