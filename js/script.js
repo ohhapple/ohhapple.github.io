@@ -46,6 +46,13 @@
             }
         });
 
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translationData[key] !== undefined) {
+                el.setAttribute('placeholder', translationData[key]);
+            }
+        });
+
         // 处理自定义字体类
         document.body.classList.forEach(cls => {
             if (cls.startsWith('lang-')) document.body.classList.remove(cls);
@@ -54,6 +61,7 @@
             document.body.classList.add(`lang-${lang}`);
         }
 
+        document.documentElement.lang = customLangs.includes(lang) ? 'en' : (lang === 'zh' ? 'zh-CN' : 'en');
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
     };
 
@@ -162,6 +170,9 @@
                 if (typeof window.updateVersionCount === 'function') {
                     window.updateVersionCount();
                 }
+                if (typeof window.fitDocumentCards === 'function') {
+                    window.fitDocumentCards();
+                }
             }
         });
     }
@@ -175,7 +186,46 @@
         countSpan.textContent = visibleCards.length.toString(); // 转为字符串
     };
 
+    // ---------- 文档卡片等高等宽与文字自适应 ----------
+    window.fitDocumentCards = function() {
+        const descriptions = Array.from(document.querySelectorAll('.doc-card p'));
+        if (!descriptions.length) return;
+
+        descriptions.forEach(description => {
+            description.style.removeProperty('font-size');
+        });
+
+        requestAnimationFrame(() => {
+            descriptions.forEach(description => {
+                if (!description.clientHeight) return;
+                const baseSize = parseFloat(window.getComputedStyle(description).fontSize);
+                const minimumSize = Math.max(12, baseSize * 0.8);
+                let currentSize = baseSize;
+
+                while (
+                    description.scrollHeight > description.clientHeight + 1 &&
+                    currentSize > minimumSize
+                ) {
+                    currentSize -= 0.5;
+                    description.style.fontSize = `${currentSize}px`;
+                }
+            });
+        });
+    };
+
+    let cardResizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(cardResizeTimer);
+        cardResizeTimer = setTimeout(window.fitDocumentCards, 150);
+    });
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(window.fitDocumentCards);
+    }
+
 // ---------- CarpetPlus 文档页特有功能（规则目录高亮、搜索）----------
+    let carpetPlusGlobalListenersBound = false;
+
     window.initCarpetPlusFeatures = function() {
         const toc = document.querySelector('.rule-toc');
         if (!toc) return; // 不是 CarpetPlus 文档页
@@ -216,16 +266,19 @@
             }
         });
 
-        // 点击其他地方取消高亮
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.rule-item') && !e.target.closest('.rule-toc a')) {
-                removeHighlight();
-            }
-        });
+        // 文档切换时会重新渲染正文，全局监听只绑定一次
+        if (!carpetPlusGlobalListenersBound) {
+            carpetPlusGlobalListenersBound = true;
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.rule-item') && !e.target.closest('.rule-toc a')) {
+                    removeHighlight();
+                }
+            });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') removeHighlight();
-        });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') removeHighlight();
+            });
+        }
 
         if (tocSearch) {
             tocSearch.addEventListener('input', function(e) {
@@ -248,6 +301,10 @@
 
     // ---------- 公共布局渲染函数 ----------
     window.renderCommonLayout = function(currentPage = '', basePath = '') {
+        const documentUrl = function(docId) {
+            return `${basePath}simple.html?doc=${encodeURIComponent(docId)}`;
+        };
+
         const commonHTML = `
             <aside class="sidebar" id="sidebar">
                 <div class="sidebar-header">
@@ -255,10 +312,10 @@
                     <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
                 </div>
                 <ul class="sidebar-menu">
-                    <li><a href="${basePath}simple.html" class="${currentPage === 'home' ? 'active' : ''}"><i class="fas fa-home"></i> <span data-i18n="nav.home">主页</span></a></li>
-                    <li><a href="${basePath}document/document.html" class="${currentPage === 'docs' ? 'active' : ''}"><i class="fas fa-file-alt"></i> <span data-i18n="nav.docs">文档</span></a></li>
-                    <li><a href="${basePath}document/repositories.html" class="${currentPage === 'repos' ? 'active' : ''}"><i class="fas fa-code-branch"></i> <span data-i18n="nav.repos">项目仓库</span></a></li>
-                    <li><a href="${basePath}about/about.html" class="${currentPage === 'about' ? 'active' : ''}"><i class="fas fa-users"></i> <span data-i18n="nav.about">关于</span></a></li>
+                    <li><a href="${documentUrl('home')}" data-nav-link="home" class="${currentPage === 'home' ? 'active' : ''}"><i class="fas fa-home"></i> <span data-i18n="nav.home">主页</span></a></li>
+                    <li><a href="${documentUrl('docs')}" data-nav-link="docs" class="${currentPage === 'docs' ? 'active' : ''}"><i class="fas fa-file-alt"></i> <span data-i18n="nav.docs">文档</span></a></li>
+                    <li><a href="${documentUrl('repositories')}" data-nav-link="repos" class="${currentPage === 'repos' ? 'active' : ''}"><i class="fas fa-code-branch"></i> <span data-i18n="nav.repos">项目仓库</span></a></li>
+                    <li><a href="${documentUrl('about')}" data-nav-link="about" class="${currentPage === 'about' ? 'active' : ''}"><i class="fas fa-users"></i> <span data-i18n="nav.about">关于</span></a></li>
                 </ul>
                 <div class="sidebar-footer">
                     <a href="https://github.com/ohhapple" target="_blank"><i class="fab fa-github"></i></a>
@@ -282,9 +339,9 @@
                             </div>
                         </div>
                         <div class="nav-links">
-                            <a href="${basePath}simple.html" class="${currentPage === 'home' ? 'active' : ''}"><span data-i18n="nav.home">主页</span></a>
-                            <a href="${basePath}document/document.html" class="${currentPage === 'docs' ? 'active' : ''}"><span data-i18n="nav.docs">文档</span></a>
-                            <a href="${basePath}document/repositories.html" class="${currentPage === 'repos' ? 'active' : ''}"><span data-i18n="nav.repos">项目仓库</span></a>
+                            <a href="${documentUrl('home')}" data-nav-link="home" class="${currentPage === 'home' ? 'active' : ''}"><span data-i18n="nav.home">主页</span></a>
+                            <a href="${documentUrl('docs')}" data-nav-link="docs" class="${currentPage === 'docs' ? 'active' : ''}"><span data-i18n="nav.docs">文档</span></a>
+                            <a href="${documentUrl('repositories')}" data-nav-link="repos" class="${currentPage === 'repos' ? 'active' : ''}"><span data-i18n="nav.repos">项目仓库</span></a>
                         </div>
                         <div class="theme-toggle">
                             <label class="switch">
