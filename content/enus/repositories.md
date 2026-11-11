@@ -36,6 +36,13 @@ tag: Repository
 tagIcon: fas fa-code
 action: View
 description: A Minecraft injector that modifies Carpet and its auxiliary mods outside the game process, runs custom commands, and monitors the console.
+
+## [Monster Conquest](https://github.com/ohhapple/Monster-Conquest)
+icon: fab fa-github
+tag: Repository
+tagIcon: fas fa-code
+action: View
+description: A Minecraft 1.21.1 / NeoForge faction warfare mod with army recruitment, RTS command, guns, tactical equipment, and auto battler gameplay.
 :::
 
 ::: note

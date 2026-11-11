@@ -36,6 +36,13 @@ tag: 仓库
 tagIcon: fas fa-code
 action: 访问
 description: Minecraft 注入器，在进程外动态修改 Carpet 及其附属 Mod 的规则，并可执行自定义命令、监控控制台。
+
+## [Monster Conquest](https://github.com/ohhapple/Monster-Conquest)
+icon: fab fa-github
+tag: 仓库
+tagIcon: fas fa-code
+action: 访问
+description: Minecraft 1.21.1 / NeoForge 阵营战争模组，支持军队招募、RTS 指挥、枪械、战术装备和自走棋玩法。
 :::
 
 ::: note
