@@ -882,6 +882,60 @@
         return mergeCatalogPages(localPages, fallbackPages);
     }
 
+    async function fetchCachedMarkdown(url) {
+        const cached = documentCache.get(url);
+        if (cached !== undefined) return cached;
+
+        const response = await fetch(url, { cache: 'no-cache' });
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        const markdown = await response.text();
+        documentCache.set(url, markdown);
+        return markdown;
+    }
+
+    async function loadMarkdownSource(locale, fallbackLocale, docId) {
+        const encodedDoc = docId.split('/').map(encodeURIComponent).join('/');
+        const candidates = [
+            {
+                locale,
+                url: new URL(`${CONTENT_ROOT}${locale}/${encodedDoc}.md`, window.location.href).href
+            },
+            {
+                locale: fallbackLocale,
+                url: new URL(`${CONTENT_ROOT}${fallbackLocale}/${encodedDoc}.md`, window.location.href).href
+            }
+        ];
+
+        if (window.location.hostname === 'ohhapple.github.io') {
+            const repository = 'ohhapple/ohhapple.github.io';
+            candidates.push(
+                {
+                    locale,
+                    url: `https://raw.githubusercontent.com/${repository}/master/content/${locale}/${encodedDoc}.md`
+                },
+                {
+                    locale: fallbackLocale,
+                    url: `https://raw.githubusercontent.com/${repository}/master/content/${fallbackLocale}/${encodedDoc}.md`
+                }
+            );
+        }
+
+        for (const candidate of candidates) {
+            try {
+                return {
+                    markdown: await fetchCachedMarkdown(candidate.url),
+                    sourceLocale: candidate.locale
+                };
+            } catch {
+                // Try the next locale or the GitHub raw fallback.
+            }
+        }
+
+        throw new Error(`无法读取 ${locale}/${docId}.md 或 ${fallbackLocale}/${docId}.md`);
+    }
+
     async function loadDocument() {
         const content = document.getElementById('page-content');
         if (!content) return;
@@ -894,35 +948,9 @@
         content.setAttribute('aria-busy', 'true');
         try {
             const docId = normalizeDocId(getDocumentFromUrl());
-            const requestedUrl = new URL(
-                `${CONTENT_ROOT}${locale}/${docId.split('/').map(encodeURIComponent).join('/')}.md`,
-                window.location.href
-            ).href;
-            let markdown;
-            let sourceLocale = locale;
-            markdown = documentCache.get(requestedUrl);
-            if (markdown === undefined) {
-                const response = await fetch(requestedUrl, { cache: 'no-cache' });
-                if (!response.ok) {
-                    const fallbackUrl = new URL(
-                        `${CONTENT_ROOT}${fallbackLocale}/${docId.split('/').map(encodeURIComponent).join('/')}.md`,
-                        window.location.href
-                    ).href;
-                    markdown = documentCache.get(fallbackUrl);
-                    if (markdown === undefined) {
-                        const fallbackResponse = await fetch(fallbackUrl, { cache: 'no-cache' });
-                        if (!fallbackResponse.ok) {
-                            throw new Error(`无法读取 ${locale}/${docId}.md 或 ${fallbackLocale}/${docId}.md`);
-                        }
-                        markdown = await fallbackResponse.text();
-                        documentCache.set(fallbackUrl, markdown);
-                    }
-                    sourceLocale = fallbackLocale;
-                } else {
-                    markdown = await response.text();
-                    documentCache.set(requestedUrl, markdown);
-                }
-            }
+            const source = await loadMarkdownSource(locale, fallbackLocale, docId);
+            const markdown = source.markdown;
+            const sourceLocale = source.sourceLocale;
             if (seq !== loadSequence) return;
 
             const parsed = deriveDocument(docId, markdown, sourceLocale);
