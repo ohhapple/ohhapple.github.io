@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minecraft 1.21.1 / NeoForge 的阵营战争模组，包含招募、军队指挥、RTS 战斗、枪械、战术装备和自走棋玩法。">
+    <title>Monster Conquest 文档</title>
+    <link rel="icon" type="image/x-icon" href="../../images/icon/ohhapple.ico">
+    <link rel="manifest" href="../../images/icon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .legacy-static-doc h3 {
+            font-size: 1.5rem;
+            margin: 1.6rem 0 0.9rem;
+        }
+
+        .legacy-static-doc h3:first-child {
+            margin-top: 0;
+        }
+
+        .legacy-static-doc p {
+            line-height: 1.8;
+        }
+
+        .legacy-static-doc code {
+            padding: 0.15rem 0.35rem;
+            border-radius: 5px;
+            background: rgba(76, 110, 245, 0.1);
+        }
+
+        .legacy-static-doc pre code {
+            padding: 0;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+<script src="../../js/script.js"></script>
+<script>
+    renderCommonLayout('docs', '../../');
+
+    const documentContent = {
+  "zh": "\n            \n            <div style=\"margin: 2rem 0;\">\n                <a href=\"../document.html\" style=\"color:#4c6ef5; text-decoration:none;\"><i class=\"fas fa-chevron-left\"></i> <span>返回文档索引</span></a>\n            </div>\n            <div class=\"hero\" style=\"max-width: 800px;\">\n                <span class=\"hero-badge\"><i class=\"fas fa-flag\"></i> Monster Conquest</span>\n                <h1>Monster Conquest 文档</h1>\n                <p>Minecraft 1.21.1 / NeoForge 的阵营战争模组，包含招募、军队指挥、RTS 战斗、枪械、战术装备和自走棋玩法。</p>\n            </div>\n            <div class=\"list-section\" style=\"margin-top: 2rem;\"><h3>📋 环境要求</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li>Minecraft 1.21.1</li><li>NeoForge 21.1.251 或更高（21.x 系列）</li><li>客户端与服务端都需要安装</li></ul>\n<h3>⚔️ 玩法概览</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><strong>阵营战争</strong>：包含亡灵、村民、灾厄、下界、末地、怪物、中立以及每位玩家独立的玩家阵营。阵营可以结盟或敌对，关系可在配置或游戏内界面调整。</li><li><strong>招募与军费</strong>：右键募兵站打开界面，按等级招募或升级士兵，价格按兵种单独配置；交易站出售弹药、枪械和战术装备，两者都能直接读取玩家背包。</li><li><strong>军队指挥</strong>：使用控制工具选中和命令单位，支持跟随、前往、攻击、R 键指挥轮盘和 V 键 RTS 模式。</li><li><strong>兵种系统</strong>：包含近战、弓手、枪手、投掷、魔法师、双形态和飞行单位。</li><li><strong>枪械与装备</strong>：支持步枪、霰弹枪、狙击枪、火箭筒及其弹药，并提供防弹衣、保暖衣、弹药箱和背包等战术装备。</li><li><strong>战马染色</strong>：手持染料并潜行右键战马或骑兵坐骑，可以长期改变其颜色。</li><li><strong>单位 AI</strong>：包含阵型排布、行军跟队、迷宫绕行、开门、爬梯和涉水寻路。</li><li><strong>自走棋玩法</strong>：按 X 打开 Monster Conquest 自走棋大厅，完整流程和经济规则可在项目仓库的玩法图鉴中查看。</li><li><strong>教程书</strong>：合成教程书后，可以按章节查看指挥、招募和交易等说明。</li></ul>\n<h3>⌨️ 默认按键</h3>\n<p>所有按键都可以在原版“选项 → 按键控制”中修改。</p>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><code>N</code>：打开阵营关系界面</li><li><code>R</code>：按住打开指挥轮盘</li><li><code>V</code>：切换 RTS 模式</li><li><code>1</code> 到 <code>5</code>：RTS 线列、盾墙、楔形、散兵和自由站位</li><li><code>Z</code> / <code>C</code>：RTS 模式下上马 / 下马</li><li><code>X</code>：打开自走棋大厅</li><li><code>H</code>：打开战术装备栏</li><li><code>B</code>：打开放在战术装备栏中的背包</li></ul>\n<h3>📟 命令</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><code>/monsterc faction GUI</code>：打开阵营关系界面</li><li><code>/monsterc spawnpoints on/off</code>：全局开关所有刷怪点</li><li><code>/monsterc arena shutdown</code>：仅 OP 可用，强制关闭自走棋竞技子服</li><li><code>/monsterc arena history clear &lt;玩家&gt;</code>：仅 OP 可用，清除指定玩家的自走棋历史战绩</li></ul>\n<h3>⚙️ 配置</h3>\n<p>首次启动后会在 <code>config/monster_conquest/</code> 下生成模块化配置。招募价格、阵营关系、单位属性、AI 和其他规则可在对应 TOML 文件中修改。</p>\n<p>自走棋配置位于 <code>arena-common.toml</code>，<code>[childServer].enabled</code> 控制是否启动竞技子服。需要只开放一个 TCP 端口时，可以启用内置网关：</p>\n<pre style=\"background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;\"><code>[network]\nembeddedGatewayRouting = true\npublicHost = &quot;公网IP或域名&quot;\n\n[network.gateway]\ngatewayPort = 26565\ngatewayMaxConnections = 256\n\n[network.arena]\narenaServerPort = 24565\nmaxPlayers = 128</code></pre>\n<p>启用网关后，玩家连接 <code>公网IP或域名:26565</code>，防火墙只需放行网关端口。<code>publicHost</code> 必须填写玩家实际可以访问的公网地址或域名。</p>\n<p>可以在 <code>general-common.toml</code> 中把 <code>updateCheckEnabled</code> 设为 <code>false</code> 来关闭更新检查。</p>\n<h3>🛠️ 构建</h3>\n<p>需要 JDK 21：</p>\n<pre style=\"background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;\"><code>.\\gradlew.bat build</code></pre>\n<p>构建产物位于 <code>build/libs/</code>。</p>\n<h3>🔗 下载与项目</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><a href=\"https://github.com/ohhapple/Monster-Conquest/releases\" target=\"_blank\" rel=\"noopener\">GitHub Releases</a></li><li><a href=\"https://www.curseforge.com/minecraft/mc-mods/monster-conquest\" target=\"_blank\" rel=\"noopener\">CurseForge</a></li><li><a href=\"https://modrinth.com/mod/monster-conquest\" target=\"_blank\" rel=\"noopener\">Modrinth</a></li><li><a href=\"https://github.com/ohhapple/Monster-Conquest\" target=\"_blank\" rel=\"noopener\">GitHub 仓库</a></li></ul>\n<p>本项目允许免费游玩、录制、直播、免费再分发和修改，但禁止任何形式的商业用途。修改版和再分发版必须保留作者及官方来源说明。</p></div>",
+  "en": "\n            \n            <div style=\"margin: 2rem 0;\">\n                <a href=\"../document.html\" style=\"color:#4c6ef5; text-decoration:none;\"><i class=\"fas fa-chevron-left\"></i> <span>Back to Docs Index</span></a>\n            </div>\n            <div class=\"hero\" style=\"max-width: 800px;\">\n                <span class=\"hero-badge\"><i class=\"fas fa-flag\"></i> Monster Conquest</span>\n                <h1>Monster Conquest Documentation</h1>\n                <p>A Minecraft 1.21.1 / NeoForge faction warfare mod with recruitment, army command, RTS combat, guns, tactical equipment, and auto battler gameplay.</p>\n            </div>\n            <div class=\"list-section\" style=\"margin-top: 2rem;\"><h3>📋 Requirements</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li>Minecraft 1.21.1</li><li>NeoForge 21.1.251 or newer within the 21.x series</li><li>Required on both the client and the server</li></ul>\n<h3>⚔️ Gameplay Overview</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><strong>Faction warfare</strong>: Undead, Villager, Illager, Nether, End, Monster, Neutral, and a separate faction for each player. Factions can be allied or hostile, with relations configurable or editable through the in-game interface.</li><li><strong>Recruitment and upkeep</strong>: Right-click a Recruitment Station to recruit or upgrade soldiers by tier. Prices are configured per unit. Trade Stations sell ammunition, guns, and tactical equipment. Both stations can read the player&#39;s inventory.</li><li><strong>Army command</strong>: Use the Control Tool to select and command units, issue follow, move, and attack orders, open the R command wheel, or enter RTS mode with V.</li><li><strong>Unit roles</strong>: Melee, archer, gunner, thrower, mage, dual-form, and flying units.</li><li><strong>Guns and equipment</strong>: Rifles, shotguns, sniper rifles, rocket launchers, and their ammunition, plus bulletproof vests, warm clothes, ammo boxes, and backpacks.</li><li><strong>War horse dyeing</strong>: Hold a dye and sneak-right-click a war horse or cavalry mount to change its color. Cavalry retain the color across dismounting and mounting again.</li><li><strong>Unit AI</strong>: Formation arrangement, marching, maze routing, door opening, ladder climbing, and water traversal.</li><li><strong>Auto Battler</strong>: Press X to open the Monster Conquest auto battler lobby. The complete guide is available in the project repository.</li><li><strong>Guide book</strong>: Craft the guide book to read chapter-based instructions for command, recruitment, trading, and other systems.</li></ul>\n<h3>⌨️ Default Keybindings</h3>\n<p>All keybindings can be changed in the vanilla Options → Controls screen.</p>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><code>N</code>: Open Faction Relations</li><li><code>R</code>: Hold to open the Command Wheel</li><li><code>V</code>: Toggle RTS mode</li><li><code>1</code> to <code>5</code>: RTS Line, Shield Wall, Wedge, Skirmish, and Free Roam formations</li><li><code>Z</code> / <code>C</code>: Mount / dismount in RTS mode</li><li><code>X</code>: Open the Auto Battler lobby</li><li><code>H</code>: Open Tactical Equipment slots</li><li><code>B</code>: Open a backpack placed in the Tactical Equipment slots</li></ul>\n<h3>📟 Commands</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><code>/monsterc faction GUI</code>: Open the faction relations interface</li><li><code>/monsterc spawnpoints on/off</code>: Globally enable or disable all monster spawn points</li><li><code>/monsterc arena shutdown</code>: OP-only force shutdown of the Auto Battler child server</li><li><code>/monsterc arena history clear &lt;player&gt;</code>: OP-only clearing of a player&#39;s Auto Battler history</li></ul>\n<h3>⚙️ Configuration</h3>\n<p>On first launch, modular configuration files are generated under <code>config/monster_conquest/</code>. Recruitment prices, faction relations, unit stats, AI, and other rules can be changed in the corresponding TOML files.</p>\n<p>Auto Battler settings are stored in <code>arena-common.toml</code>; <code>[childServer].enabled</code> controls whether the arena child server starts. To expose only one TCP port, enable the embedded gateway:</p>\n<pre style=\"background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;\"><code>[network]\nembeddedGatewayRouting = true\npublicHost = &quot;public-ip-or-domain&quot;\n\n[network.gateway]\ngatewayPort = 26565\ngatewayMaxConnections = 256\n\n[network.arena]\narenaServerPort = 24565\nmaxPlayers = 128</code></pre>\n<p>With the gateway enabled, players connect to <code>public-ip-or-domain:26565</code>, and only the gateway port must be allowed through the firewall. <code>publicHost</code> must be an address or domain reachable by players.</p>\n<p>Set <code>updateCheckEnabled</code> to <code>false</code> in <code>general-common.toml</code> to disable update checks.</p>\n<h3>🛠️ Build</h3>\n<p>JDK 21 is required:</p>\n<pre style=\"background: rgba(0,0,0,0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;\"><code>.\\gradlew.bat build</code></pre>\n<p>Build output is written to <code>build/libs/</code>.</p>\n<h3>🔗 Downloads and Project</h3>\n<ul style=\"margin: 1rem 0 2rem 2rem; line-height: 1.8;\"><li><a href=\"https://github.com/ohhapple/Monster-Conquest/releases\" target=\"_blank\" rel=\"noopener\">GitHub Releases</a></li><li><a href=\"https://www.curseforge.com/minecraft/mc-mods/monster-conquest\" target=\"_blank\" rel=\"noopener\">CurseForge</a></li><li><a href=\"https://modrinth.com/mod/monster-conquest\" target=\"_blank\" rel=\"noopener\">Modrinth</a></li><li><a href=\"https://github.com/ohhapple/Monster-Conquest\" target=\"_blank\" rel=\"noopener\">GitHub repository</a></li></ul>\n<p>The mod may be played, recorded, streamed, redistributed for free, and modified without charge. Commercial use is prohibited. Modified and redistributed versions must retain the original author and source attribution.</p></div>"
+};
+    const documentTitles = {
+  "zh": "Monster Conquest 文档",
+  "en": "Monster Conquest Documentation"
+};
+    const documentDescriptions = {
+  "zh": "Minecraft 1.21.1 / NeoForge 的阵营战争模组，包含招募、军队指挥、RTS 战斗、枪械、战术装备和自走棋玩法。",
+  "en": "A Minecraft 1.21.1 / NeoForge faction warfare mod with recruitment, army command, RTS combat, guns, tactical equipment, and auto battler gameplay."
+};
+
+    function getDocumentLanguage() {
+        const stored = localStorage.getItem('siteLanguage') || 'zh';
+        return documentContent[stored] ? stored : 'en';
+    }
+
+    function renderStaticDocument() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        const language = getDocumentLanguage();
+        content.innerHTML = '<article class="legacy-static-doc">' + documentContent[language] + '</article>';
+        document.title = documentTitles[language];
+        document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+        const description = document.querySelector('meta[name="description"]');
+        if (description) description.content = documentDescriptions[language];
+
+        if (typeof window.initCarpetPlusFeatures === 'function') {
+            window.initCarpetPlusFeatures();
+        }
+    }
+
+    renderStaticDocument();
+    document.addEventListener('languageChanged', renderStaticDocument);
+</script>
+</body>
+</html>
